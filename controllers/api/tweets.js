@@ -28,6 +28,11 @@ const update = (req,res) => {
         }
     })
 }
+
+const like = (req,res) => {
+    
+}
+
 const create = (req,res) => {
     Tweet.create(req.body, (err, createdTweet) => {
         if(err) {
@@ -51,6 +56,7 @@ module.exports = {
     get,
     remove,
     update,
+    like,
     create,
     show
 }

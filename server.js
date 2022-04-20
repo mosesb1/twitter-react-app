@@ -1,10 +1,11 @@
 // ./server.js
 
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors')
 const path = require('path');
 const logger = require('morgan');
 
-require('dotenv').config();
 require('./config/database');
 
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 app.use(logger('dev'));
 // there's no need to mount express.urlencoded middleware
 // why is that?
+app.use(cors());
 app.use(express.json());
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
