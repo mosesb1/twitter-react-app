@@ -3,11 +3,11 @@ const {model, Schema} = require('mongoose');
 const tweetSchema = new Schema({
     content: {
         type: String,
-        required
+        required: true
     },
     username: {
         type: String,
-        required
+        required: true
     },
     img: {
         type: String,
