@@ -25,6 +25,8 @@ app.use(require('./config/checkToken'));
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/tweets', require('./routes/api/tweets'));
+app.use('/api/messages', require('./routes/api/messages'));
+app.use('/api/messageThreads', require('./routes/api/messageThreads'));
 
 
 // The following "catch all" route (note the *) is necessary
