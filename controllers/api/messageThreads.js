@@ -31,13 +31,15 @@ const create = (req,res) => {
 }
 
 const addMessage = (req,res) => {
-    MessageThread.updateOne({_id: req.params.threadId}, {
-        $addToSet: {messages: {
-            sender: "moses",
-            receiver: "moses2",
-            message: "hey bud"
-        }}
-    });
+    MessageThread.findByIdAndUpdate(req.params.id, {
+        $addToSet: {messages: '6260b375a67a16a308a8cfe6'}
+    }, {returnDocument: 'after'}, (err, updatedThread) => {
+        if(err){
+            res.status(400).json(err)
+        } else {
+            res.status(200).json(updatedThread)
+        }
+    })
 }
 
 const show = (req,res) => {

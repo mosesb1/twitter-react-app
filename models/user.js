@@ -26,7 +26,19 @@ const userSchema = new Schema({
     avatar: {
         type: String,
         required: false
-    }
+    },
+    followers: [
+        {
+            type: String,
+            required: false
+        }
+    ],
+    following: [
+        {
+            type: String,
+            required: false
+        }
+    ]
 }, {
     timestamps: true,
     toJSON: {

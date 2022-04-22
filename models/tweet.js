@@ -18,6 +18,12 @@ const tweetSchema = new Schema({
             type: String,
             required: false
         }
+    ],
+    replies: [
+        {
+            type: String,
+            required: false
+        }
     ]
 })
 
