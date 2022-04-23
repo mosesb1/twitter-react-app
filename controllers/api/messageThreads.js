@@ -1,4 +1,5 @@
 const MessageThread = require('../../models/messageThread');
+const Message = require('../../models/message');
 
 const index = (req,res) => {
     MessageThread.find({}, (err, foundMessageThreads) => {
@@ -21,7 +22,7 @@ const remove = (req,res) => {
 }
 
 const create = (req,res) => {
-    MessageThread.create({userOne: "moses", userTwo: "moses2"}, (err, createdThread) => {
+    MessageThread.create({userOne: req.params.firstId, userTwo: req.params.secondId}, (err, createdThread) => {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -31,13 +32,19 @@ const create = (req,res) => {
 }
 
 const addMessage = (req,res) => {
-    MessageThread.findByIdAndUpdate(req.params.id, {
-        $addToSet: {messages: '6260b375a67a16a308a8cfe6'}
-    }, {returnDocument: 'after'}, (err, updatedThread) => {
+    Message.findById(req.params.messageId, (err, foundMessage) => {
         if(err){
-            res.status(400).json(err)
+            res.status(400).json(err);
         } else {
-            res.status(200).json(updatedThread)
+            MessageThread.findByIdAndUpdate(req.params.threadId, {
+                $addToSet: {messages: foundMessage}
+            }, {returnDocument: 'after'}, (err, updatedThread) => {
+                if(err){
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(updatedThread);
+                }
+            })
         }
     })
 }
