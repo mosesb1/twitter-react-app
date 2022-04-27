@@ -50,7 +50,7 @@ const addMessage = (req,res) => {
 }
 
 const show = (req,res) => {
-    MessageThread.find({$or: [{userOne: req.params.current, userTwo: req.params.other}, {userOne: req.params.other, userTwo: req.params.current}]}, (err, foundMessageThreads) => {
+    MessageThread.find({$or: [{userOne: req.params.firstId, userTwo: req.params.secondId}, {userOne: req.params.secondId, userTwo: req.params.firstId}]}, (err, foundMessageThreads) => {
         if(err) {
             res.status(400).json(err);
         } else {

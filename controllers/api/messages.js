@@ -1,4 +1,5 @@
 const Message = require('../../models/message');
+const MessageThread = require('../../models/messageThread');
 
 const get = (req,res) => {
     Message.find({sender: req.params.sender}, (err, foundMessages) => {
@@ -15,7 +16,13 @@ const create = (req,res) => {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.status(200).json(createdMessage);
+            MessageThread.findByIdAndUpdate(req.params.threadId, { $addToSet: {messages: createdMessage} }, {returnDocument: 'after'}, (err, updatedThread) => {
+                    if(err) {
+                        res.status(400).json(err);
+                    } else {
+                        res.status(200).json(updatedThread);
+                    }
+            })
         }
     })
 }

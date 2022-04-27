@@ -4,6 +4,6 @@ const messagesCtrl = require('../../controllers/api/messages');
 
 router.get('/:sender', messagesCtrl.get);
 router.delete('/:id', messagesCtrl.remove);
-router.post('/', messagesCtrl.create);
+router.post('/:threadId', messagesCtrl.create);
 
 module.exports = router;

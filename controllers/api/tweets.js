@@ -30,7 +30,29 @@ const update = (req,res) => {
 }
 
 const like = (req,res) => {
-    
+    Tweet.findByIdAndUpdate(req.params.tweetId, {$addToSet: {likes: req.params.userId}}, {returnDocument: 'after'}, (err, updatedTweet) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(updatedTweet);
+        }
+    })
+}
+
+const reply = (req,res) => {
+    Tweet.create(req.body, (err, createdTweet) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            Tweet.findByIdAndUpdate(req.params.tweetId, {$addToSet: {replies: createdTweet._id}}, {returnDocument: 'after'}, (err, updatedTweet) => {
+                if(err){
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(updatedTweet);
+                }
+            })
+        }
+    })
 }
 
 const create = (req,res) => {
@@ -58,5 +80,6 @@ module.exports = {
     update,
     like,
     create,
+    reply,
     show
 }
