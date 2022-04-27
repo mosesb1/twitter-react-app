@@ -1,3 +1,29 @@
+import axios from 'axios';
+import { getAll } from '../../utilities/tweets-api';
+import Tweet from '../../components/Tweet/Tweet.jsx';
+import { useEffect, useState } from 'react';
+
 export default function HomePage() {
-    return <h1>Home</h1>
+    const [tweets, setTweets] = useState([])
+    const getTweets = async () => {
+        const foundTweets = await getAll();
+        setTweets(foundTweets.map((foundTweet, idx) => {
+            return (
+                <Tweet key={idx} img={foundTweet.image} likes={foundTweet.likes} replies={foundTweet.replies} handle={foundTweet.username} name={foundTweet.username} text={foundTweet.content}/>
+            )
+        }))
+    }
+
+    const loaded = () => {
+        return <main>{tweets}</main>
+    }
+
+    const loading = () => {
+        return <h1>Loading ...</h1>
+    }
+
+    useEffect(() => {
+        getTweets();
+    }, [])
+    return tweets.length ? loaded() : loading()
 }

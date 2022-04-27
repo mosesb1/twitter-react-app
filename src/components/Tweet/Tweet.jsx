@@ -1,17 +1,17 @@
 import './Tweet.css';
 
-export default function Tweet({img, name, handle, text, date, profileImg}) {
+export default function Tweet({img, name, handle, text, date, profileImg, replies, likes}) {
     return (
         <div className="tweet-wrap">
             <div className="tweet-header">
-                <img src={profileImg} alt="" className="avator"/>
+                {profileImg && <img src={profileImg} alt="" className="avator"/>}
                 <div className="tweet-header-info">
-                    {name} <span>@{handle}</span><span>{date}</span>
+                    {name} <span>@{handle}</span>{date && <span>{date}</span>}
                     <p>{text}</p>
                 </div>
             </div>
             <div className="tweet-img-wrap">
-                <img src={img} alt="" className="tweet-img"/>
+                {img && <img src={img} alt="" className="tweet-img"/>}
             </div>
             <div className="tweet-info-counts">
                 <div className="comments">
@@ -28,7 +28,7 @@ export default function Tweet({img, name, handle, text, date, profileImg}) {
                         aria-hidden="true">
                             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                     </svg>
-                    <div className="comment-count">33</div>
+                    <div className="comment-count">{replies.length}</div>
                 </div>
                 <div className="retweets">
                     <svg className="feather feather-repeat sc-dnqmqq jxshSx" 
@@ -63,7 +63,7 @@ export default function Tweet({img, name, handle, text, date, profileImg}) {
                         aria-hidden="true">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
-                    <div className="likes-count">2.6k</div>
+                    <div className="likes-count">{likes.length}</div>
                 </div>
                 <div className="message">
                     <svg className="feather feather-send sc-dnqmqq jxshSx" 
