@@ -2,9 +2,10 @@ import '../../pages/App/App.css';
 import { Outlet } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
+import NewTweet from '../../components/NewTweet/NewTweet';
 import { useState, useEffect } from 'react';
 
-export default function Layout() {
+export default function Layout({user}) {
     const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
@@ -23,7 +24,8 @@ export default function Layout() {
         <div className='layout'>
             <main>
                 <SearchBar setSearchText={setSearchText}/>
-                <NavBar/>
+                <NavBar user={user}/>
+                <NewTweet user={user}/>
                 <Outlet searchText={searchText}/>
             </main>
         </div>

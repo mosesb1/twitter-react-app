@@ -13,3 +13,7 @@ export function getTweet(id){
 export function getReplies(id){
     return sendRequest(`${BASE_URL}/replies/${id}`)
 }
+
+export function createTweet(body) {
+    return sendRequest(BASE_URL, "POST", body);
+}
