@@ -1,11 +1,27 @@
 const Tweet = require('../../models/tweet');
 
 const get = (req,res) => {
-    Tweet.find({}, (err, foundTweets) => {
+    Tweet.find({reply: "false"}, (err, foundTweets) => {
         if(err){
             res.status(400).json(err);
         } else {
             res.status(200).json(foundTweets);
+        }
+    })
+}
+
+const getReplies = (req,res) => {
+    Tweet.findById(req.params.tweetId, (err,foundTweet) => {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            Tweet.find({_id: {$in: foundTweet.replies}}, (err,foundTweets) => {
+                if(err){
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(foundTweets);
+                }
+            })
         }
     })
 }
@@ -40,7 +56,7 @@ const like = (req,res) => {
 }
 
 const reply = (req,res) => {
-    Tweet.create(req.body, (err, createdTweet) => {
+    Tweet.create(req.body, {reply: "true"}, (err, createdTweet) => {
         if(err){
             res.status(400).json(err);
         } else {
@@ -76,6 +92,7 @@ const show = (req,res) => {
 
 module.exports = {
     get,
+    getReplies,
     remove,
     update,
     like,

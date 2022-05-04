@@ -1,14 +1,17 @@
 import TweetBtn from "../TweetBtn/TweetBtn";
 import Icon from "../Icon/Icon";
 import './NavBar.module.css';
+import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
     return (
         <nav>
             <ul>
                 <li>
-                    <Icon icon="fa-solid fa-house-user"/>
-                    Home
+                    <Link to='/'>
+                        <Icon icon="fa-solid fa-house-user"/>
+                        Home
+                    </Link>
                 </li>
                 <li>
                     <Icon icon="fa-solid fa-hashtag"/>

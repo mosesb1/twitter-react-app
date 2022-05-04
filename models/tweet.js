@@ -14,6 +14,11 @@ const tweetSchema = new Schema({
         type: String,
         required: false
     },
+    reply: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     likes: [
         {
             type: Schema.Types.ObjectId,

@@ -4,6 +4,7 @@ const tweetsCtrl = require('../../controllers/api/tweets');
 
 
 router.get('/', tweetsCtrl.get);
+router.get('/replies/:tweetId', tweetsCtrl.getReplies);
 router.delete('/:id', tweetsCtrl.remove);
 router.put('/:id', tweetsCtrl.update);
 router.patch('/:tweetId/:userId', tweetsCtrl.like)

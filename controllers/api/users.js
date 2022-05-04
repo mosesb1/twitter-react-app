@@ -4,8 +4,20 @@ const User = require('../../models/user');
 
 module.exports = {
   create,
-  login
+  login,
+  get,
+  getUser
 };
+
+function get(req,res) {
+  User.find({}, (err, foundUsers) => {
+    if(err){
+      res.status(400).json(err)
+    } else {
+      res.status(200).json(foundUsers)
+    }
+  })
+}
 
 async function create(req, res) {
   try {
@@ -33,6 +45,16 @@ async function login(req, res) {
   } catch(e) {
     res.status(400).json({ msg: e.message, reason: 'Bad Credentials' });
   }
+}
+
+function getUser(req,res) {
+  User.findById(req.params.userId, (err, foundUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(foundUser);
+    }
+  })
 }
 
 

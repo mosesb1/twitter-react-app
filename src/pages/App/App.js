@@ -5,10 +5,11 @@ import AuthPage from '../AuthPage/AuthPage';
 import Layout from '../../screens/layout/Layout';
 import HomePage from '../HomePage/HomePage';
 import ShowPage from '../ShowPage/ShowPage'
-import {Routes, Route, Navigate} from 'react-router-dom'
+import { getUser } from '../../utilities/users-service';
+import {Routes, Route, Navigate} from 'react-router-dom';
 
 export default function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(getUser());
     return (
         <main>
             {

@@ -9,3 +9,7 @@ export function getAll(){
 export function getTweet(id){
     return sendRequest(`${BASE_URL}/${id}`)
 }
+
+export function getReplies(id){
+    return sendRequest(`${BASE_URL}/replies/${id}`)
+}
