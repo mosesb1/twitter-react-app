@@ -1,8 +1,11 @@
 import './NewTweet.module.css';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { createTweet } from '../../utilities/tweets-api';
 
 export default function NewTweet({user}){
+    let navigate = useNavigate();
+
     const [body, setBody] = useState({
         content: '',
         user: user._id,
@@ -21,6 +24,7 @@ export default function NewTweet({user}){
             const tweetBody = {...body};
             delete tweetBody.error;
             const createdTweet = await createTweet(tweetBody);
+            navigate(`/${createdTweet._id}`)
         } catch(err) {
             setBody({error: 'Creation failed - try again'})
         }
