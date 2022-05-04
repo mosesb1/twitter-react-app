@@ -17,3 +17,7 @@ export function getReplies(id){
 export function createTweet(body) {
     return sendRequest(BASE_URL, "POST", body);
 }
+
+export function createReply(id, body) {
+    return sendRequest(`${BASE_URL}/${id}`, "POST", body)
+}

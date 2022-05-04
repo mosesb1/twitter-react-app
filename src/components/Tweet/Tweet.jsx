@@ -2,6 +2,7 @@ import './Tweet.css';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { findUser } from '../../utilities/users-api';
+import Dropdown from '../Dropdown/Dropdown';
 
 export default function Tweet({img, id, user, text, date, profileImg, replies, likes}) {
     const [username, setUsername] = useState(null)
@@ -29,6 +30,7 @@ export default function Tweet({img, id, user, text, date, profileImg, replies, l
                     <div className="tweet-img-wrap">
                         {img && <img src={img} alt="" className="tweet-img"/>}
                     </div>
+                    <Dropdown />
                     <div className="tweet-info-counts">
                         <div className="comments">
                             <svg className="feather feather-message-circle sc-dnqmqq jxshSx" 

@@ -56,7 +56,7 @@ const like = (req,res) => {
 }
 
 const reply = (req,res) => {
-    Tweet.create(req.body, {reply: "true"}, (err, createdTweet) => {
+    Tweet.create(req.body, (err, createdTweet) => {
         if(err){
             res.status(400).json(err);
         } else {

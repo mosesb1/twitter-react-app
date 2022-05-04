@@ -25,7 +25,6 @@ export default function Layout({user}) {
             <main>
                 <SearchBar setSearchText={setSearchText}/>
                 <NavBar user={user}/>
-                <NewTweet user={user}/>
                 <Outlet searchText={searchText}/>
             </main>
         </div>
