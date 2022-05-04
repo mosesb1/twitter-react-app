@@ -19,6 +19,11 @@ const tweetSchema = new Schema({
         required: true,
         default: false
     },
+    parent: {
+        type: Schema.Types.ObjectId,
+        ref: 'Tweet',
+        required: false,
+    },
     likes: [
         {
             type: Schema.Types.ObjectId,

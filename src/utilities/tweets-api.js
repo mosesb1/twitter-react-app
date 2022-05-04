@@ -21,3 +21,11 @@ export function createTweet(body) {
 export function createReply(id, body) {
     return sendRequest(`${BASE_URL}/${id}`, "POST", body)
 }
+
+export function deleteTweet(id) {
+    return sendRequest(`${BASE_URL}/${id}`,"DELETE")
+}
+
+export function removeReply(tweetId, replyId){
+    return sendRequest(`${BASE_URL}/replies/${tweetId}/${replyId}`, "PATCH")
+}

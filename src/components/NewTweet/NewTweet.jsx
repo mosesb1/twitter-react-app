@@ -12,6 +12,7 @@ export default function NewTweet({user, reply, id}){
         content: '',
         user: user._id,
         reply: reply ? "true" : "false",
+        parent: reply ? id : '',
         img: '',
         error: ''
     });
@@ -45,6 +46,9 @@ export default function NewTweet({user, reply, id}){
         evt.preventDefault();
         try {
             const tweetBody = {...body};
+            if(!tweetBody.parent){
+                delete tweetBody.parent;
+            }
             delete tweetBody.error;
             const createdTweet = reply ? await createReply(id, tweetBody) : await createTweet(tweetBody);
             navigate(`/${createdTweet._id}`)
@@ -56,7 +60,7 @@ export default function NewTweet({user, reply, id}){
         <form onSubmit={onSubmit}>
             <textarea placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
             <input type='file' name="img" onChange={handleFiles} />
-            <button type="button" onClick={imageUpload}>{body.img ? "Image Uploaded" : "Upload Image"}</button>
+            <button type="button" onClick={imageUpload}>{body.img ? "Image Uploaded ✅" : "Upload Image"}</button>
             <input type="submit" value="tweet" />
         </form>
     )

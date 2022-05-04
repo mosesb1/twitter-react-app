@@ -18,19 +18,20 @@ export default function Tweet({img, id, user, text, date, profileImg, replies, l
 
     const loaded = () => {
         return (
-            <Link to={`/${id}`}>
                 <div className="tweet-wrap">
                     <div className="tweet-header">
                         {profileImg && <img src={profileImg} alt="" className="avator"/>}
                         <div className="tweet-header-info">
                             {username} <span>@{username}</span>{date && <span>{date}</span>}
-                            <p>{text}</p>
+                            <Link to={`/${id}`}>
+                                <p>{text}</p>
+                            </Link>
                         </div>
                     </div>
                     <div className="tweet-img-wrap">
                         {img && <img src={img} alt="" className="tweet-img"/>}
                     </div>
-                    <Dropdown />
+                    <Dropdown id={id}/>
                     <div className="tweet-info-counts">
                         <div className="comments">
                             <svg className="feather feather-message-circle sc-dnqmqq jxshSx" 
@@ -101,7 +102,6 @@ export default function Tweet({img, id, user, text, date, profileImg, replies, l
                         </div>
                     </div>
                 </div>
-            </Link>
         )
     }
     const loading = () => {
