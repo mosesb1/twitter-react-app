@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { findUser } from '../../utilities/users-api';
 import Dropdown from '../Dropdown/Dropdown';
 
-export default function Tweet({img, id, user, text, date, profileImg, replies, likes}) {
+export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh}) {
     const [username, setUsername] = useState(null)
 
     const getUserName = async () => {
@@ -31,7 +31,7 @@ export default function Tweet({img, id, user, text, date, profileImg, replies, l
                     <div className="tweet-img-wrap">
                         {img && <img src={img} alt="" className="tweet-img"/>}
                     </div>
-                    <Dropdown id={id}/>
+                    {currentUser._id === user && <Dropdown id={id} reply={reply} setRefresh={setRefresh} refresh={refresh}/>}
                     <div className="tweet-info-counts">
                         <div className="comments">
                             <svg className="feather feather-message-circle sc-dnqmqq jxshSx" 

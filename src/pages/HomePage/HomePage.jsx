@@ -10,7 +10,7 @@ export default function HomePage({user}) {
         const foundTweets = await getAll();
         setTweets(foundTweets.map((foundTweet, idx) => {
             return (
-                <Tweet key={idx} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content}/>
+                <Tweet key={idx} currentUser={user} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply}/>
             )
         }))
     }

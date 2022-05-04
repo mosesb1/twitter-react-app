@@ -2,13 +2,21 @@ import styles from './Dropdown.module.css';
 import { deleteTweet, removeReply } from '../../utilities/tweets-api';
 import { useNavigate } from 'react-router-dom';
 
-export default function Dropdown({id}){
+export default function Dropdown({id, refresh, setRefresh}){
     let navigate = useNavigate();
     const handleDelete = async (evt) => {
         const deletedTweet = await deleteTweet(id);
-        await removeReply(deletedTweet.parent, deletedTweet._id)
-        navigate('/');
+        if(deletedTweet.reply){
+            await removeReply(deletedTweet.parent, deletedTweet._id)
+        }
+        if(deletedTweet.parent) {
+            navigate(`/${deletedTweet.parent}`);
+        } else {
+            navigate(`/`);
+        }
+        setRefresh(!refresh);
     }
+
     return (
         <div>
             <p className={`${styles.dropdown}`}>...</p>

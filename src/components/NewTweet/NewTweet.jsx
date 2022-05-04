@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import { createTweet, createReply } from '../../utilities/tweets-api';
 import axios from 'axios';
 
-export default function NewTweet({user, reply, id}){
+export default function NewTweet({user, reply, id, refresh, setRefresh}){
     const [files, setFiles] = useState([]);
     let navigate = useNavigate();
 
@@ -52,15 +52,20 @@ export default function NewTweet({user, reply, id}){
             delete tweetBody.error;
             const createdTweet = reply ? await createReply(id, tweetBody) : await createTweet(tweetBody);
             navigate(`/${createdTweet._id}`)
+            setRefresh(!refresh)
         } catch(err) {
             setBody({error: 'Creation failed - try again'})
         }
+    }
+
+    const doNothing = () => {
+        return;
     }
     return (
         <form onSubmit={onSubmit}>
             <textarea placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
             <input type='file' name="img" onChange={handleFiles} />
-            <button type="button" onClick={imageUpload}>{body.img ? "Image Uploaded ✅" : "Upload Image"}</button>
+            <button type="button" onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded ✅" : "Upload Image"}</button>
             <input type="submit" value="tweet" />
         </form>
     )
