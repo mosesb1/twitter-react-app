@@ -14,6 +14,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 
 export default function App() {
     const [user, setUser] = useState(null);
+    const [searchText, setSearchText] = useState('');
     const [updateUser, setUpdateUser] = useState(false);
     const [refresh, setRefresh] = useState(false);
 
@@ -38,12 +39,12 @@ export default function App() {
             {
                 user ? 
                 <Routes>
-                    <Route path='/' element={<Layout user={user}/>}>
-                        <Route index element={<HomePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
-                        <Route path='/explore' element={<ExplorePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
+                    <Route path='/' element={<Layout user={user} searchText={searchText} setSearchText={setSearchText}/>}>
+                        <Route index element={<HomePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
+                        <Route path='/explore' element={<ExplorePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/:id' element={<ShowPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/edit/:id' element={<EditPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
-                        <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
+                        <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

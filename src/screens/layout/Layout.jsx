@@ -5,8 +5,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import NewTweet from '../../components/NewTweet/NewTweet';
 import { useState, useEffect } from 'react';
 
-export default function Layout({user}) {
-    const [searchText, setSearchText] = useState('');
+export default function Layout({user, setSearchText, searchText}) {
 
     useEffect(() => {
         const scriptTag = document.createElement('script');
@@ -23,7 +22,7 @@ export default function Layout({user}) {
     return (
         <div className='layout'>
             <main>
-                <SearchBar setSearchText={setSearchText}/>
+                <SearchBar searchText={searchText} setSearchText={setSearchText}/>
                 <NavBar user={user}/>
                 <Outlet searchText={searchText}/>
             </main>
