@@ -17,11 +17,15 @@ export default function Dropdown({id, refresh, setRefresh}){
         setRefresh(!refresh);
     }
 
+    const handleEdit = (evt) => {
+        navigate(`/edit/${id}`);
+    }
+
     return (
         <div>
             <p className={`${styles.dropdown}`}>...</p>
             <button onClick={handleDelete} className={`${styles.dropdownItem}`}>Delete</button>
-            <button className={`${styles.dropdownItem}`}>Edit</button>
+            <button onClick={handleEdit} className={`${styles.dropdownItem}`}>Edit</button>
         </div>
     )
 }

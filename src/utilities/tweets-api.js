@@ -7,11 +7,11 @@ export function getAll(){
 }
 
 export function getTweet(id){
-    return sendRequest(`${BASE_URL}/${id}`)
+    return sendRequest(`${BASE_URL}/${id}`);
 }
 
 export function getReplies(id){
-    return sendRequest(`${BASE_URL}/replies/${id}`)
+    return sendRequest(`${BASE_URL}/replies/${id}`);
 }
 
 export function createTweet(body) {
@@ -19,13 +19,17 @@ export function createTweet(body) {
 }
 
 export function createReply(id, body) {
-    return sendRequest(`${BASE_URL}/${id}`, "POST", body)
+    return sendRequest(`${BASE_URL}/${id}`, "POST", body);
 }
 
 export function deleteTweet(id) {
-    return sendRequest(`${BASE_URL}/${id}`,"DELETE")
+    return sendRequest(`${BASE_URL}/${id}`,"DELETE");
 }
 
 export function removeReply(tweetId, replyId){
-    return sendRequest(`${BASE_URL}/replies/${tweetId}/${replyId}`, "PATCH")
+    return sendRequest(`${BASE_URL}/replies/${tweetId}/${replyId}`, "PATCH");
+}
+
+export function editTweet(id, body){
+    return sendRequest(`${BASE_URL}/${id}`, "PUT", body);
 }
