@@ -8,6 +8,7 @@ import ShowPage from '../ShowPage/ShowPage'
 import EditPage from '../EditPage/EditPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import { getUser } from '../../utilities/users-service';
+import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
 export default function App() {
@@ -15,8 +16,21 @@ export default function App() {
     const [updateUser, setUpdateUser] = useState(false);
     const [refresh, setRefresh] = useState(false);
 
+    const refreshUser = async () => {
+        const foundUser = await findUser(user._id);
+        setUser({
+            ...user,
+            email: foundUser.email,
+            followers: foundUser.followers,
+            following: foundUser.following,
+            username: foundUser.username,
+            likes: foundUser.likes
+        });
+    }
+
     useEffect(() => {
         setUser(getUser());
+        refreshUser();
     },[updateUser])
     return (
         <main>
