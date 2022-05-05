@@ -73,7 +73,7 @@ const remove = (req,res) => {
     })
 }
 const update = (req,res) => {
-    Tweet.findByIdAndUpdate(req.params.id, req.body, (err, updatedTweet) => {
+    Tweet.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'}, (err, updatedTweet) => {
         if(err) {
             res.status(400).json(err);
         } else {

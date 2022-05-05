@@ -1,7 +1,8 @@
 import './Tweet.css';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { findUser } from '../../utilities/users-api';
+import { findUser, userLike } from '../../utilities/users-api';
+import { tweetLike } from '../../utilities/tweets-api';
 import Dropdown from '../Dropdown/Dropdown';
 
 export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh}) {
@@ -9,13 +10,18 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
 
     const getUserName = async () => {
         const foundUser = await findUser(user);
-        console.log(foundUser)
         setUsername(foundUser.username);
     }
 
     useEffect(() => {
         getUserName();
     },[user])
+
+    const handleLike = async (evt) => {
+        await tweetLike(id, currentUser._id);
+        await userLike(currentUser._id, id);
+        setRefresh(!refresh);
+    }
 
     const loaded = () => {
         return (
@@ -70,19 +76,21 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
                             <div className="retweet-count">397</div>
                         </div>
                         <div className="likes">
-                            <svg className="feather feather-heart sc-dnqmqq jxshSx" 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                width="20" 
-                                height="20" 
-                                viewBox="0 0 24 24" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                strokeWidth="2" 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                aria-hidden="true">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
+                            <button className="like-btn" onClick={handleLike}>
+                                <svg className="feather feather-heart sc-dnqmqq jxshSx" 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="20" 
+                                    height="20" 
+                                    viewBox="0 0 24 24" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    strokeWidth="2" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    aria-hidden="true">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
                             <div className="likes-count">{likes.length}</div>
                         </div>
                         <div className="message">

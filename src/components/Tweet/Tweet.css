@@ -62,6 +62,15 @@ body {
     color:#657786;
     margin-right: 10px;
   }
+
+  .like-btn {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
   @media screen and (max-width:430px){
     body {
       padding-left: 20px;

@@ -11,5 +11,9 @@ export function login(credentials) {
 }
 
 export function findUser(id) {
-  return sendRequest(`${BASE_URL}/${id}`)
+  return sendRequest(`${BASE_URL}/${id}`);
+}
+
+export function userLike(userId, tweetId){
+  return sendRequest(`${BASE_URL}/${userId}/${tweetId}`, "PATCH");
 }

@@ -26,6 +26,10 @@ export function getReplies(id){
     return sendRequest(`${BASE_URL}/replies/${id}`);
 }
 
+export function tweetLike(tweetId, userId){
+    return sendRequest(`${BASE_URL}/${tweetId}/${userId}`, "PATCH");
+}
+
 export function createTweet(body) {
     return sendRequest(BASE_URL, "POST", body);
 }

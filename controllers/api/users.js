@@ -6,6 +6,7 @@ module.exports = {
   create,
   login,
   get,
+  like,
   getUser
 };
 
@@ -53,6 +54,16 @@ function getUser(req,res) {
       res.status(400).json(err);
     } else {
       res.status(200).json(foundUser);
+    }
+  })
+}
+
+function like(req,res) {
+  User.findByIdAndUpdate(req.params.userId, {$addToSet: {likes: req.params.tweetId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
     }
   })
 }

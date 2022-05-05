@@ -7,6 +7,8 @@ router.get('/', usersCtrl.get);
 
 router.get('/:userId', usersCtrl.getUser);
 
+router.patch('/:userId/:tweetId', usersCtrl.like);
+
 // POST /api/users
 router.post('/', usersCtrl.create);
 // POST /api/users/login
