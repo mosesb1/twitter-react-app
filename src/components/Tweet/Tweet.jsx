@@ -9,12 +9,13 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
 
     const getUserName = async () => {
         const foundUser = await findUser(user);
+        console.log(foundUser)
         setUsername(foundUser.username);
     }
 
     useEffect(() => {
         getUserName();
-    },[])
+    },[user])
 
     const loaded = () => {
         return (

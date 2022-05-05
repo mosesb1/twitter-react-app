@@ -1,4 +1,5 @@
 const Tweet = require('../../models/tweet');
+const User = require('../../models/user');
 
 const get = (req,res) => {
     Tweet.find({reply: "false"}, (err, foundTweets) => {
@@ -42,6 +43,22 @@ const getUserTweetsAndReplies = (req,res) => {
             res.status(400).json(err);
         } else {
             res.status(200).json(foundTweets);
+        }
+    })
+}
+
+const getLikes = (req,res) => {
+    User.findById(req.params.userId, (err, foundUser) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            Tweet.find({_id: {$in: foundUser.likes}}, (err, foundTweets) => {
+                if(err){
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(foundTweets);
+                }
+            })
         }
     })
 }
@@ -125,6 +142,7 @@ module.exports = {
     getReplies,
     getUserTweets,
     getUserTweetsAndReplies,
+    getLikes,
     remove,
     update,
     like,

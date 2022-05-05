@@ -2,7 +2,7 @@ import ProfileNavBar from "../../components/ProfileNavBar/ProfileNavBar";
 import { useState, useEffect } from "react";
 import { findUser } from "../../utilities/users-api";
 import { useParams } from "react-router-dom";
-import { getUserTweets } from "../../utilities/tweets-api";
+import { getUserTweets, getUserTweetsAndReplies, getLikes } from "../../utilities/tweets-api";
 import Tweet from "../../components/Tweet/Tweet";
 
 export default function ProfilePage({user, refresh, setRefresh}){
@@ -27,12 +27,22 @@ export default function ProfilePage({user, refresh, setRefresh}){
         }))
     }
 
-    const findTweetsAndReplies = () => {
-        
+    const findTweetsAndReplies = async () => {
+        const foundTweets = await getUserTweetsAndReplies(id);
+        setDisplayedTweets(foundTweets.map((tweet, idx) => {
+            return (
+                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh}/>
+            )
+        }))
     }
 
-    const findLikes = () => {
-
+    const findLikes = async () => {
+        const foundTweets = await getLikes(id);
+        setDisplayedTweets(foundTweets.map((tweet, idx) => {
+            return (
+                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh}/>
+            )
+        }))
     }
 
     useEffect(() => {
@@ -46,9 +56,18 @@ export default function ProfilePage({user, refresh, setRefresh}){
         }
     },[display])
 
-    return (
-        <main>
-            <ProfileNavBar setDisplay={setDisplay}/>
-        </main>
-    )
+    const loaded = () => {
+        return (
+            <main>
+                <ProfileNavBar setDisplay={setDisplay}/>
+                {displayedTweets}
+            </main>
+        )
+    }
+
+    const loading = () => {
+        return <h1>Loading ...</h1>
+    }
+
+    return displayedTweets.length ? loaded() : loading()
 }

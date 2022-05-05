@@ -14,6 +14,14 @@ export function getUserTweets(id){
     return sendRequest(`${BASE_URL}/user/${id}`)
 }
 
+export function getUserTweetsAndReplies(id) {
+    return sendRequest(`${BASE_URL}/user/all/${id}`)
+}
+
+export function getLikes(id){
+    return sendRequest(`${BASE_URL}/likes/${id}`)
+}
+
 export function getReplies(id){
     return sendRequest(`${BASE_URL}/replies/${id}`);
 }
