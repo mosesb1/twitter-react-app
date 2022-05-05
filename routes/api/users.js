@@ -9,6 +9,8 @@ router.get('/:userId', usersCtrl.getUser);
 
 router.patch('/:userId/:tweetId', usersCtrl.like);
 
+router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike)
+
 // POST /api/users
 router.post('/', usersCtrl.create);
 // POST /api/users/login

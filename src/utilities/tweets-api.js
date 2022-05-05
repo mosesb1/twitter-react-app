@@ -30,6 +30,10 @@ export function tweetLike(tweetId, userId){
     return sendRequest(`${BASE_URL}/${tweetId}/${userId}`, "PATCH");
 }
 
+export function tweetRemoveLike(tweetId, userId){
+    return sendRequest(`${BASE_URL}/remove/${tweetId}/${userId}`, "PATCH");
+}
+
 export function createTweet(body) {
     return sendRequest(BASE_URL, "POST", body);
 }

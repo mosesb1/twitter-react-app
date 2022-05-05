@@ -7,6 +7,7 @@ module.exports = {
   login,
   get,
   like,
+  removeLike,
   getUser
 };
 
@@ -68,6 +69,15 @@ function like(req,res) {
   })
 }
 
+function removeLike(req,res) {
+  User.findByIdAndUpdate(req.params.userId, {$pull: {likes: req.params.tweetId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err) {
+      res.status(400).json(err);  
+    } else {
+      res.status(200).json(updatedUser);
+    }
+  })
+}
 /* Helper Functions */
 
 function createJWT(user) {

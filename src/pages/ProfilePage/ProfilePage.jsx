@@ -54,7 +54,7 @@ export default function ProfilePage({user, refresh, setRefresh}){
         } else {
             findTweetsAndReplies();
         }
-    },[display])
+    },[display, refresh])
 
     const loaded = () => {
         return (

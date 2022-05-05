@@ -1,11 +1,12 @@
 import './Tweet.css';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { findUser, userLike } from '../../utilities/users-api';
-import { tweetLike } from '../../utilities/tweets-api';
+import { findUser, userLike, userRemoveLike } from '../../utilities/users-api';
+import { tweetLike, tweetRemoveLike } from '../../utilities/tweets-api';
 import Dropdown from '../Dropdown/Dropdown';
 
 export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh}) {
+
     const [username, setUsername] = useState(null)
 
     const getUserName = async () => {
@@ -20,6 +21,12 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
     const handleLike = async (evt) => {
         await tweetLike(id, currentUser._id);
         await userLike(currentUser._id, id);
+        setRefresh(!refresh);
+    }
+
+    const removeLike = async (evt) => {
+        await tweetRemoveLike(id, currentUser._id);
+        await userRemoveLike(currentUser._id, id);
         setRefresh(!refresh);
     }
 
@@ -76,7 +83,7 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
                             <div className="retweet-count">397</div>
                         </div>
                         <div className="likes">
-                            <button className="like-btn" onClick={handleLike}>
+                            <button className="like-btn" onClick={likes.includes(currentUser._id) ? removeLike : handleLike}>
                                 <svg className="feather feather-heart sc-dnqmqq jxshSx" 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     width="20" 

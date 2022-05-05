@@ -17,3 +17,7 @@ export function findUser(id) {
 export function userLike(userId, tweetId){
   return sendRequest(`${BASE_URL}/${userId}/${tweetId}`, "PATCH");
 }
+
+export function userRemoveLike(userId, tweetId){
+  return sendRequest(`${BASE_URL}/remove/${userId}/${tweetId}`, "PATCH")
+}

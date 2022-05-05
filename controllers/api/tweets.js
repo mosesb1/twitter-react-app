@@ -92,6 +92,16 @@ const like = (req,res) => {
     })
 }
 
+const removeLike = (req,res) => {
+    Tweet.findByIdAndUpdate(req.params.tweetId, {$pull: {likes: req.params.userId}}, {returnDocument: 'after'}, (err, updatedTweet) => {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(updatedTweet);
+        }
+    })
+}
+
 const reply = (req,res) => {
     Tweet.create(req.body, (err, createdTweet) => {
         if(err){
@@ -146,6 +156,7 @@ module.exports = {
     remove,
     update,
     like,
+    removeLike,
     create,
     reply,
     removeReply,
