@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getUserTweets, getUserTweetsAndReplies, getLikes } from "../../utilities/tweets-api";
 import Tweet from "../../components/Tweet/Tweet";
 
-export default function ProfilePage({user, refresh, setRefresh}){
+export default function ProfilePage({user, refresh, setRefresh, updateUser, setUpdateUser}){
     const [displayedUser, setDisplayedUser] = useState(null);
     const [display, setDisplay] = useState('Tweets');
     const [displayedTweets, setDisplayedTweets] = useState([]);
@@ -22,7 +22,7 @@ export default function ProfilePage({user, refresh, setRefresh}){
         const foundTweets = await getUserTweets(id)
         setDisplayedTweets(foundTweets.map((tweet, idx) => {
             return (
-                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh}/>
+                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
             )
         }))
     }
@@ -31,7 +31,7 @@ export default function ProfilePage({user, refresh, setRefresh}){
         const foundTweets = await getUserTweetsAndReplies(id);
         setDisplayedTweets(foundTweets.map((tweet, idx) => {
             return (
-                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh}/>
+                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
             )
         }))
     }
@@ -40,7 +40,7 @@ export default function ProfilePage({user, refresh, setRefresh}){
         const foundTweets = await getLikes(id);
         setDisplayedTweets(foundTweets.map((tweet, idx) => {
             return (
-                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh}/>
+                <Tweet key={idx} currentUser={user} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
             )
         }))
     }

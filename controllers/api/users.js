@@ -8,6 +8,8 @@ module.exports = {
   get,
   like,
   removeLike,
+  follow,
+  removeFollow,
   getUser
 };
 
@@ -75,6 +77,38 @@ function removeLike(req,res) {
       res.status(400).json(err);  
     } else {
       res.status(200).json(updatedUser);
+    }
+  })
+}
+
+function follow(req,res){
+  User.findByIdAndUpdate(req.params.userId, {$addToSet: {following: req.params.followId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err) {
+      res.status(400).json(err);
+    } else {
+      User.findByIdAndUpdate(req.params.followId, {$addToSet: {followers: req.params.userId}}, {returnDocument: 'after'}, (err, updatedFollow) => {
+        if(err){
+          res.status(400).json(err);
+        } else {
+          res.status(200).json({updatedUser: updatedUser, updatedFollow: updatedFollow})
+        }
+      })
+    }
+  })
+}
+
+function removeFollow(req,res){
+  User.findByIdAndUpdate(req.params.userId, {$pull: {following: req.params.followId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err) {
+      res.status(400).json(err);
+    } else {
+      User.findByIdAndUpdate(req.params.followId, {$pull: {followers: req.params.userId}}, {returnDocument: 'after'}, (err, updatedFollow) => {
+        if(err){
+          res.status(400).json(err);
+        } else {
+          res.status(200).json({updatedUser: updatedUser, updatedFollow: updatedFollow})
+        }
+      })
     }
   })
 }

@@ -1,33 +1,49 @@
 import './Tweet.css';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { findUser, userLike, userRemoveLike } from '../../utilities/users-api';
+import { findUser, userLike, userRemoveLike, follow, removeFollow } from '../../utilities/users-api';
 import { tweetLike, tweetRemoveLike } from '../../utilities/tweets-api';
 import Dropdown from '../Dropdown/Dropdown';
 
-export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh}) {
+export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh, updateUser, setUpdateUser}) {
 
-    const [username, setUsername] = useState(null)
+    const [username, setUsername] = useState(null);
+    const [tweeter, setTweeter] = useState(null);
 
     const getUserName = async () => {
         const foundUser = await findUser(user);
         setUsername(foundUser.username);
+        setTweeter(foundUser);
     }
 
     useEffect(() => {
         getUserName();
-    },[user])
+    },[user, updateUser])
 
     const handleLike = async (evt) => {
         await tweetLike(id, currentUser._id);
         await userLike(currentUser._id, id);
+        setUpdateUser(!updateUser);
         setRefresh(!refresh);
     }
 
     const removeLike = async (evt) => {
         await tweetRemoveLike(id, currentUser._id);
         await userRemoveLike(currentUser._id, id);
+        setUpdateUser(!updateUser);
         setRefresh(!refresh);
+    }
+
+    const handleFollow = async (evt) => {
+        if(tweeter.followers.includes(currentUser._id)){
+            await removeFollow(currentUser._id, user);
+            setUpdateUser(!updateUser);
+            setRefresh(!refresh);
+        } else {
+            await follow(currentUser._id, user);
+            setUpdateUser(!updateUser);
+            setRefresh(!refresh);
+        }
     }
 
     const loaded = () => {
@@ -36,7 +52,7 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
                     <div className="tweet-header">
                         {profileImg && <img src={profileImg} alt="" className="avator"/>}
                         <div className="tweet-header-info">
-                            <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}
+                            <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}{user !== currentUser._id && <button onClick={handleFollow} className='follow-btn'>{tweeter.followers.includes(currentUser._id) ? "Unfollow" : "Follow"}</button>}
                             <Link to={`/${id}`}>
                                 <p>{text}</p>
                             </Link>
@@ -124,5 +140,5 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
         return <h1>Loading ...</h1>
     }
 
-    return username ? loaded() : loading();
+    return username && tweeter ? loaded() : loading();
 }

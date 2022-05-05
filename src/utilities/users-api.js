@@ -19,5 +19,13 @@ export function userLike(userId, tweetId){
 }
 
 export function userRemoveLike(userId, tweetId){
-  return sendRequest(`${BASE_URL}/remove/${userId}/${tweetId}`, "PATCH")
+  return sendRequest(`${BASE_URL}/remove/${userId}/${tweetId}`, "PATCH");
+}
+
+export function follow(userId, followId){
+  return sendRequest(`${BASE_URL}/follow/${userId}/${followId}`, "PATCH");
+}
+
+export function removeFollow(userId, followId){
+  return sendRequest(`${BASE_URL}/follow/remove/${userId}/${followId}`, "PATCH");
 }

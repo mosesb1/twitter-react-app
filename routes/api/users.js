@@ -9,7 +9,11 @@ router.get('/:userId', usersCtrl.getUser);
 
 router.patch('/:userId/:tweetId', usersCtrl.like);
 
-router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike)
+router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike);
+
+router.patch('/follow/:userId/:followId', usersCtrl.follow);
+
+router.patch('/follow/remove/:userId/:followId', usersCtrl.removeFollow);
 
 // POST /api/users
 router.post('/', usersCtrl.create);
