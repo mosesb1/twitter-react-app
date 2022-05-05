@@ -29,7 +29,7 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
                     <div className="tweet-header">
                         {profileImg && <img src={profileImg} alt="" className="avator"/>}
                         <div className="tweet-header-info">
-                            {username} <span>@{username}</span>{date && <span>{date}</span>}
+                            <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}
                             <Link to={`/${id}`}>
                                 <p>{text}</p>
                             </Link>
