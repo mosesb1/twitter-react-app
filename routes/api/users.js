@@ -15,6 +15,10 @@ router.patch('/follow/:userId/:followId', usersCtrl.follow);
 
 router.patch('/follow/remove/:userId/:followId', usersCtrl.removeFollow);
 
+router.patch('/bookmark/:userId/:tweetId', usersCtrl.bookmark);
+
+router.patch('/bookmark/remove/:userId/:tweetId', usersCtrl.removeBookmark);
+
 // POST /api/users
 router.post('/', usersCtrl.create);
 // POST /api/users/login

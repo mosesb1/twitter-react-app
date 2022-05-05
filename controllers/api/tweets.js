@@ -79,6 +79,22 @@ const getHome = (req,res) => {
     })
 }
 
+const getBookmark = (req,res) => {
+    User.findById(req.params.userId, (err, foundUser) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            Tweet.find({_id: {$in: foundUser.bookmarks}}, (err, foundTweets) => {
+                if(err){
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(foundTweets);
+                }
+            })
+        }
+    })
+}
+
 const remove = (req,res) => {
     Tweet.findByIdAndDelete(req.params.id, (err, deletedTweet) => {
         if(err) {
@@ -144,6 +160,26 @@ const removeReply = (req,res) => {
     })
 }
 
+const bookmark = (req,res) => {
+    Tweet.findByIdAndUpdate(req.params.tweetId, {$addToSet: {bookmarks: req.params.userId}}, {returnDocument: 'after'}, (err, updatedTweet) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(updatedTweet);
+        }
+    })
+}
+
+const removeBookmark = (req,res) => {
+    Tweet.findByIdAndUpdate(req.params.tweetId, {$pull: {bookmarks: req.params.userId}}, {returnDocument: 'after'}, (err, updatedTweet) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(updatedTweet);
+        }
+    })
+}
+
 const create = (req,res) => {
     Tweet.create(req.body, (err, createdTweet) => {
         if(err) {
@@ -170,6 +206,7 @@ module.exports = {
     getUserTweetsAndReplies,
     getLikes,
     getHome,
+    getBookmark,
     remove,
     update,
     like,
@@ -177,5 +214,7 @@ module.exports = {
     create,
     reply,
     removeReply,
+    bookmark,
+    removeBookmark,
     show
 }

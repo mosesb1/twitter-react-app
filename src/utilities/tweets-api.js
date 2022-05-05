@@ -57,3 +57,15 @@ export function editTweet(id, body){
 export function getHomePage(id){
     return sendRequest(`${BASE_URL}/home/${id}`);
 }
+
+export function getBookmarkPage(id){
+    return sendRequest(`${BASE_URL}/bookmark/${id}`);
+}
+
+export function bookmarkTweet(tweetId, userId){
+    return sendRequest(`${BASE_URL}/bookmark/${tweetId}/${userId}`, "PATCH");
+}
+
+export function removeBookmarkTweet(tweetId, userId){
+    return sendRequest(`${BASE_URL}/bookmark/remove/${tweetId}/${userId}`, "PATCH");
+}

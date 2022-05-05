@@ -1,6 +1,5 @@
 import './App.css';
 import {useState, useEffect} from 'react';
-import Tweet from '../../components/Tweet/Tweet';
 import AuthPage from '../AuthPage/AuthPage';
 import Layout from '../../screens/layout/Layout';
 import HomePage from '../HomePage/HomePage';
@@ -8,6 +7,7 @@ import ExplorePage from '../ExplorePage/ExplorePage';
 import ShowPage from '../ShowPage/ShowPage'
 import EditPage from '../EditPage/EditPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import BookmarkPage from '../BookmarkPage/BookmarkPage';
 import { getUser } from '../../utilities/users-service';
 import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
@@ -26,7 +26,8 @@ export default function App() {
             followers: foundUser.followers,
             following: foundUser.following,
             username: foundUser.username,
-            likes: foundUser.likes
+            likes: foundUser.likes,
+            bookmarks: foundUser.bookmarks
         });
     }
 
@@ -45,6 +46,7 @@ export default function App() {
                         <Route path='/:id' element={<ShowPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/edit/:id' element={<EditPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
+                        <Route path='/bookmarks' element={<BookmarkPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

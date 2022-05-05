@@ -1,12 +1,12 @@
-import { getHomePage } from '../../utilities/tweets-api';
+import { getBookmarkPage } from '../../utilities/tweets-api';
 import Tweet from '../../components/Tweet/Tweet.jsx';
 import { useEffect, useState } from 'react';
 import NewTweet from '../../components/NewTweet/NewTweet';
 
-export default function HomePage({user, refresh, setRefresh, updateUser, setUpdateUser, searchText}) {
+export default function BookMarkPage({user, refresh, setRefresh, updateUser, setUpdateUser, searchText}) {
     const [tweets, setTweets] = useState([])
     const getTweets = async () => {
-        const foundTweets = await getHomePage(user._id);
+        const foundTweets = await getBookmarkPage(user._id);
         if(searchText){
             const filteredTweets = [];
             foundTweets.forEach((foundTweet, idx) => {

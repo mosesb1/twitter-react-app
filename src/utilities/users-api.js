@@ -29,3 +29,11 @@ export function follow(userId, followId){
 export function removeFollow(userId, followId){
   return sendRequest(`${BASE_URL}/follow/remove/${userId}/${followId}`, "PATCH");
 }
+
+export function bookmark(userId, tweetId){
+  return sendRequest(`${BASE_URL}/bookmark/${userId}/${tweetId}`, "PATCH");
+}
+
+export function removeBookmark(userId,tweetId){
+  return sendRequest(`${BASE_URL}/bookmark/remove/${userId}/${tweetId}`, "PATCH");
+}

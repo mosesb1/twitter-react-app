@@ -37,6 +37,13 @@ const tweetSchema = new Schema({
             ref: 'Tweet',
             required: false
         }
+    ],
+    bookmarks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: false
+        }
     ]
 })
 

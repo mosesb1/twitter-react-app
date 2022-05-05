@@ -10,6 +10,8 @@ module.exports = {
   removeLike,
   follow,
   removeFollow,
+  bookmark,
+  removeBookmark,
   getUser
 };
 
@@ -112,6 +114,27 @@ function removeFollow(req,res){
     }
   })
 }
+
+function bookmark(req,res){
+  User.findByIdAndUpdate(req.params.userId, {$addToSet: {bookmarks: req.params.tweetId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
+    }
+  })
+}
+
+function removeBookmark(req,res){
+  User.findByIdAndUpdate(req.params.userId, {$pull: {bookmarks: req.params.tweetId}}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
+    }
+  })
+}
+
 /* Helper Functions */
 
 function createJWT(user) {

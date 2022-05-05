@@ -28,8 +28,10 @@ export default function NavBar({user}) {
                     Messages
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-bookmark"/>
-                    Bookmarks
+                    <Link to='/bookmarks'>
+                        <Icon icon="fa-solid fa-bookmark"/>
+                        Bookmarks
+                    </Link>
                 </li>
                 <li>
                     <Icon icon="fa-solid fa-memo"/>
