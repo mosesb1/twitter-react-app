@@ -29,13 +29,22 @@ const userSchema = new Schema({
     },
     followers: [
         {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: false
         }
     ],
     following: [
         {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: false
+        }
+    ],
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: false
         }
     ]

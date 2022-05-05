@@ -48,7 +48,7 @@ async function login(req, res) {
 }
 
 function getUser(req,res) {
-  User.findById(req.params.userId, (err, foundUser) => {
+  User.findById(req.params.userId, {email: 0}, (err, foundUser) => {
     if(err){
       res.status(400).json(err);
     } else {
@@ -56,7 +56,6 @@ function getUser(req,res) {
     }
   })
 }
-
 
 /* Helper Functions */
 

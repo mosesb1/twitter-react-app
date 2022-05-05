@@ -10,6 +10,10 @@ export function getTweet(id){
     return sendRequest(`${BASE_URL}/${id}`);
 }
 
+export function getUserTweets(id){
+    return sendRequest(`${BASE_URL}/user/${id}`)
+}
+
 export function getReplies(id){
     return sendRequest(`${BASE_URL}/replies/${id}`);
 }

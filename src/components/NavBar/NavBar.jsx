@@ -3,7 +3,7 @@ import Icon from "../Icon/Icon";
 import './NavBar.module.css';
 import { Link } from "react-router-dom";
 
-export default function NavBar(props) {
+export default function NavBar({user}) {
     return (
         <nav>
             <ul>
@@ -34,8 +34,10 @@ export default function NavBar(props) {
                     Lists
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-user"/>
-                    Profile
+                    <Link to={`/user/${user._id}`}>
+                        <Icon icon="fa-solid fa-user"/>
+                        Profile
+                    </Link>
                 </li>
                 <li>
                     <Icon icon="fa-solid fa-circle-ellipsis"/>

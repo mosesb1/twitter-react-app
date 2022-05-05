@@ -26,6 +26,26 @@ const getReplies = (req,res) => {
     })
 }
 
+const getUserTweets = (req,res) => {
+    Tweet.find({$and: [{user: req.params.userId}, {reply: "false"}]}, (err, foundTweets) => {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(foundTweets);
+        }
+    })
+}
+
+const getUserTweetsAndReplies = (req,res) => {
+    Tweet.find({user: req.params.userId}, (err, foundTweets) => {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(foundTweets);
+        }
+    })
+}
+
 const remove = (req,res) => {
     Tweet.findByIdAndDelete(req.params.id, (err, deletedTweet) => {
         if(err) {
@@ -103,6 +123,8 @@ const show = (req,res) => {
 module.exports = {
     get,
     getReplies,
+    getUserTweets,
+    getUserTweetsAndReplies,
     remove,
     update,
     like,
