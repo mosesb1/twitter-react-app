@@ -8,6 +8,7 @@ router.get('/replies/:tweetId', tweetsCtrl.getReplies);
 router.get('/user/:userId', tweetsCtrl.getUserTweets);
 router.get('/user/all/:userId', tweetsCtrl.getUserTweetsAndReplies)
 router.get('/likes/:userId', tweetsCtrl.getLikes)
+router.get('/home/:userId', tweetsCtrl.getHome);
 router.delete('/:id', tweetsCtrl.remove);
 router.put('/:id', tweetsCtrl.update);
 router.patch('/:tweetId/:userId', tweetsCtrl.like)

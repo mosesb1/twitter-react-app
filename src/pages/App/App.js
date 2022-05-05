@@ -4,6 +4,7 @@ import Tweet from '../../components/Tweet/Tweet';
 import AuthPage from '../AuthPage/AuthPage';
 import Layout from '../../screens/layout/Layout';
 import HomePage from '../HomePage/HomePage';
+import ExplorePage from '../ExplorePage/ExplorePage';
 import ShowPage from '../ShowPage/ShowPage'
 import EditPage from '../EditPage/EditPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
@@ -39,6 +40,7 @@ export default function App() {
                 <Routes>
                     <Route path='/' element={<Layout user={user}/>}>
                         <Route index element={<HomePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
+                        <Route path='/explore' element={<ExplorePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/:id' element={<ShowPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/edit/:id' element={<EditPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>

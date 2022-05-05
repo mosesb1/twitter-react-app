@@ -53,3 +53,7 @@ export function removeReply(tweetId, replyId){
 export function editTweet(id, body){
     return sendRequest(`${BASE_URL}/${id}`, "PUT", body);
 }
+
+export function getHomePage(id){
+    return sendRequest(`${BASE_URL}/home/${id}`);
+}

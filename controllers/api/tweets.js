@@ -63,6 +63,22 @@ const getLikes = (req,res) => {
     })
 }
 
+const getHome = (req,res) => {
+    User.findById(req.params.userId, (err, foundUser) => {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            Tweet.find({$or: [{_id: {$in: foundUser.likes}}, {user: {$in: foundUser.following}}, {user: foundUser._id}]}, (err, foundTweets) => {
+                if(err) {
+                    res.status(400).json(err);
+                } else {
+                    res.status(200).json(foundTweets);
+                }
+            })
+        }
+    })
+}
+
 const remove = (req,res) => {
     Tweet.findByIdAndDelete(req.params.id, (err, deletedTweet) => {
         if(err) {
@@ -153,6 +169,7 @@ module.exports = {
     getUserTweets,
     getUserTweetsAndReplies,
     getLikes,
+    getHome,
     remove,
     update,
     like,

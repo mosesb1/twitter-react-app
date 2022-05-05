@@ -14,8 +14,10 @@ export default function NavBar({user}) {
                     </Link>
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-hashtag"/>
-                    Explore
+                    <Link to='/explore'>
+                        <Icon icon="fa-solid fa-hashtag"/>
+                        Explore
+                    </Link>
                 </li>
                 <li>
                     <Icon icon="fa-solid fa-bell"/>
