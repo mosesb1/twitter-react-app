@@ -10,6 +10,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 
 export default function App() {
     const [user, setUser] = useState(null);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         setUser(getUser());
@@ -20,8 +21,8 @@ export default function App() {
                 user ? 
                 <Routes>
                     <Route path='/' element={<Layout user={user}/>}>
-                        <Route index element={<HomePage user={user} setUser={setUser}/>}/>
-                        <Route path='/:id' element={<ShowPage user={user}/>}/>
+                        <Route index element={<HomePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh}/>}/>
+                        <Route path='/:id' element={<ShowPage user={user} refresh={refresh} setRefresh={setRefresh}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

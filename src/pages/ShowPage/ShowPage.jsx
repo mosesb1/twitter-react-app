@@ -4,8 +4,7 @@ import { getTweet, getReplies } from "../../utilities/tweets-api";
 import Tweet from "../../components/Tweet/Tweet";
 import NewTweet from "../../components/NewTweet/NewTweet";
 
-export default function ShowPage({user}){
-    const [refresh, setRefresh] = useState(false);
+export default function ShowPage({user, refresh, setRefresh}){
     const [tweet, setTweet] = useState([]);
     const [replies, setReplies] = useState([]);
     const [showReplies, setShowReplies] = useState(true);
