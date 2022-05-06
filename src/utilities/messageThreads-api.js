@@ -6,6 +6,10 @@ export function getThread(userId, recipientId){
     return sendRequest(`${BASE_URL}/${userId}/${recipientId}`);
 }
 
+export function getThreadById(threadId){
+    return sendRequest(`${BASE_URL}/thread/${threadId}`);
+}
+
 export function createThread(userId, recipientId){
     return sendRequest(`${BASE_URL}/${userId}/${recipientId}`, "POST");
 }

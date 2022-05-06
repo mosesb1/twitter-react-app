@@ -2,11 +2,21 @@ const MessageThread = require('../../models/messageThread');
 const Message = require('../../models/message');
 
 const get = (req,res) => {
-    MessageThread.find({$or: [{userOne: userId}, {userTwo: userId}]}, (err, foundMessageThreads) => {
+    MessageThread.find({$or: [{userOne: req.params.userId}, {userTwo: req.params.userId}]}, (err, foundMessageThreads) => {
         if(err) {
             res.status(400).json(err); 
         } else {
             res.status(200).json(foundMessageThreads);
+        }
+    })
+}
+
+const getThread = (req,res) => {
+    MessageThread.findById(req.params.threadId, (err, foundThread) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(foundThread);
         }
     })
 }
@@ -61,6 +71,7 @@ const show = (req,res) => {
 
 module.exports = {
     get,
+    getThread,
     remove,
     create,
     addMessage,

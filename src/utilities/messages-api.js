@@ -10,6 +10,6 @@ export function deleteMessage(messageId){
     return sendRequest(`${BASE_URL}/${messageId}`, "DELETE");
 }
 
-export function createMessage(threadId){
-    return sendRequest(`${BASE_URL}/${threadId}`, "POST");
+export function createMessage(threadId, body){
+    return sendRequest(`${BASE_URL}/${threadId}`, "POST", body);
 }
