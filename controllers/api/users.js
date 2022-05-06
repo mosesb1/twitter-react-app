@@ -12,7 +12,8 @@ module.exports = {
   removeFollow,
   bookmark,
   removeBookmark,
-  getUser
+  getUser,
+  getUserByName
 };
 
 function get(req,res) {
@@ -55,6 +56,16 @@ async function login(req, res) {
 
 function getUser(req,res) {
   User.findById(req.params.userId, (err, foundUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(foundUser);
+    }
+  })
+}
+
+function getUserByName(req,res) {
+  User.find({username: req.params.username}, (err, foundUser) => {
     if(err){
       res.status(400).json(err);
     } else {

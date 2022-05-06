@@ -8,6 +8,8 @@ import ShowPage from '../ShowPage/ShowPage'
 import EditPage from '../EditPage/EditPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import BookmarkPage from '../BookmarkPage/BookmarkPage';
+import Lists from '../Lists/Lists';
+import Messages from '../Messages/Messages';
 import { getUser } from '../../utilities/users-service';
 import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
@@ -47,6 +49,8 @@ export default function App() {
                         <Route path='/edit/:id' element={<EditPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/bookmarks' element={<BookmarkPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
+                        <Route path='/lists' element={<Lists user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
+                        <Route path='/messages' element={<Messages user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

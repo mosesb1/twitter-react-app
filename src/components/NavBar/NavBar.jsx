@@ -24,8 +24,10 @@ export default function NavBar({user}) {
                     Notifications
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-envelope"/>
-                    Messages
+                    <Link to='/messages'>
+                        <Icon icon="fa-solid fa-envelope"/>
+                        Messages
+                    </Link>
                 </li>
                 <li>
                     <Link to='/bookmarks'>
@@ -34,8 +36,10 @@ export default function NavBar({user}) {
                     </Link>
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-memo"/>
-                    Lists
+                    <Link to='/lists'>
+                        <Icon icon="fa-solid fa-memo"/>
+                        Lists
+                    </Link>
                 </li>
                 <li>
                     <Link to={`/user/${user._id}`}>

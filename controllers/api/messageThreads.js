@@ -1,8 +1,8 @@
 const MessageThread = require('../../models/messageThread');
 const Message = require('../../models/message');
 
-const index = (req,res) => {
-    MessageThread.find({}, (err, foundMessageThreads) => {
+const get = (req,res) => {
+    MessageThread.find({$or: [{userOne: userId}, {userTwo: userId}]}, (err, foundMessageThreads) => {
         if(err) {
             res.status(400).json(err); 
         } else {
@@ -60,7 +60,7 @@ const show = (req,res) => {
 }
 
 module.exports = {
-    index,
+    get,
     remove,
     create,
     addMessage,

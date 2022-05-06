@@ -2,7 +2,7 @@ const Message = require('../../models/message');
 const MessageThread = require('../../models/messageThread');
 
 const get = (req,res) => {
-    Message.find({sender: req.params.sender}, (err, foundMessages) => {
+    Message.find({thread: req.params.threadId}, (err, foundMessages) => {
         if(err){
             res.status(400).json(err)
         } else {

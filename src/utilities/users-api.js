@@ -14,6 +14,10 @@ export function findUser(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
 
+export function findUserByName(username){
+  return sendRequest(`${BASE_URL}/name/${username}`);
+}
+
 export function userLike(userId, tweetId){
   return sendRequest(`${BASE_URL}/${userId}/${tweetId}`, "PATCH");
 }
