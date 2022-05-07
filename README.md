@@ -29,6 +29,7 @@ An app that is supposed to mimic the functionality of the social media app Twitt
 ![Explore Page](./public/project-screenshots/Screen%20Shot%202022-05-07%20at%208.16.38%20AM.png)
 ![Bookmarks](./public/project-screenshots/Screen%20Shot%202022-05-07%20at%208.17.03%20AM.png)
 ![Profile Page](./public/project-screenshots/Screen%20Shot%202022-05-07%20at%208.17.14%20AM.png)
+![General Wireframe](./public/project-screenshots/Screen%20Shot%202022-05-07%20at%208.39.16%20AM.png)
 
 # Unsolved problems and future enhancements
 
