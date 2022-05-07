@@ -67,7 +67,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
         return (
                 <div className="tweet-wrap">
                     <div className="tweet-header">
-                        {tweeter.avatar && <img src={tweeter.avatar} alt="" className="avator"/>}
+                        {tweeter.avatar && <img src={tweeter.avatar} alt="" className="avatar"/>}
                         <div className="tweet-header-info">
                             <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}{user !== currentUser._id && <button onClick={handleFollow} className='follow-btn'>{tweeter.followers.includes(currentUser._id) ? "Unfollow" : "Follow"}</button>}<button onClick={handleBookmark} className="bookmark-btn">{tweet.bookmarks.includes(currentUser._id) ? "Remove Bookmark" : "Bookmark"}</button>
                             <Link to={`/${id}`}>
@@ -117,7 +117,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                         </div>
                         <div className="likes">
                             <button className="like-btn" onClick={likes.includes(currentUser._id) ? removeLike : handleLike}>
-                                <svg className="feather feather-heart sc-dnqmqq jxshSx" 
+                                <svg className="feather feather-heart sc-dnqmqq jxshSx"
                                     xmlns="http://www.w3.org/2000/svg" 
                                     width="20" 
                                     height="20" 

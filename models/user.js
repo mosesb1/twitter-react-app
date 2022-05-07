@@ -25,7 +25,8 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String,
-        required: false
+        required: false,
+        default: "https://www.deccanherald.com/sites/dh/files/article_images/2020/05/19/604513-2135246437-1491282148.jpg"
     },
     followers: [
         {

@@ -9,11 +9,6 @@ body {
   img {
     max-width:100%;
   }
-  .avator {
-    border-radius:100px;
-    width:48px;
-    margin-right: 15px;
-  }
   
   
   .tweet-wrap {
@@ -71,6 +66,15 @@ body {
     overflow: hidden;
     outline: none;
   }
+
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
   @media screen and (max-width:430px){
     body {
       padding-left: 20px;
