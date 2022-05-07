@@ -5,7 +5,7 @@ import { findUser, userLike, userRemoveLike, follow, removeFollow, bookmark, rem
 import { tweetLike, tweetRemoveLike, bookmarkTweet, removeBookmarkTweet, getTweet } from '../../utilities/tweets-api';
 import Dropdown from '../Dropdown/Dropdown';
 
-export default function Tweet({currentUser, img, id, user, text, date, replies, likes, reply, refresh, setRefresh, updateUser, setUpdateUser}) {
+export default function Tweet({currentUser, img, id, user, text, date, replies, likes, reply, refresh, parent, setRefresh, updateUser, setUpdateUser}) {
 
     const [username, setUsername] = useState(null);
     const [tweeter, setTweeter] = useState(null);
@@ -14,9 +14,11 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
     const getUserName = async () => {
         const foundUser = await findUser(user);
         const foundTweet = await getTweet(id);
+        console.log(foundTweet)
         setUsername(foundUser.username);
         setTweeter(foundUser);
-        setTweet(foundTweet)
+        setTweet(foundTweet);
+        console.log(tweet);
     }
 
     useEffect(() => {
@@ -69,7 +71,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                     <div className="tweet-header">
                         {tweeter.avatar && <img src={tweeter.avatar} alt="" className="avatar"/>}
                         <div className="tweet-header-info">
-                            <Link to={`/user/${user}`} style={{ textDecoration: 'none', color: "black" }}>{username} <span>@{username}</span></Link>{date && <span>{date.slice(0,10)}</span>}<Dropdown currentUser={currentUser} user={user} tweeter={tweeter} handleFollow={handleFollow} handleBookmark={handleBookmark} tweet={tweet} id={id} reply={reply} setRefresh={setRefresh} refresh={refresh}/>
+                            <Link to={`/user/${user}`} style={{ textDecoration: 'none', color: "black" }}>{username} <span>@{username}</span></Link>{date && <span>{date.slice(0,10)}</span>}<Dropdown currentUser={currentUser} user={user} tweeter={tweeter} parent={parent} handleFollow={handleFollow} handleBookmark={handleBookmark} tweet={tweet} id={id} reply={reply} setRefresh={setRefresh} refresh={refresh}/>
                             <Link to={`/${id}`} style={{ textDecoration: 'none', color: "black" }}>
                                 <p className="tweet-content">{text}</p>
                             </Link>

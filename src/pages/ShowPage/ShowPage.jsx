@@ -13,7 +13,7 @@ export default function ShowPage({user, refresh, setRefresh, updateUser, setUpda
 
     const findTweet = async () => {
         const foundTweet = await getTweet(id);
-        setTweet([<Tweet key={0} currentUser={user} date={foundTweet.createdAt} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>])
+        setTweet([<Tweet key={0} currentUser={user} date={foundTweet.createdAt} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} parent={foundTweet.parent} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>])
     }
     const findReplies = async () => {
         const foundReplies = await getReplies(id);
@@ -24,7 +24,7 @@ export default function ShowPage({user, refresh, setRefresh, updateUser, setUpda
         }
         setReplies(foundReplies.map((reply, idx) => {
             return (
-                <Tweet key={idx+1} currentUser={user} date={reply.createdAt} id={reply._id} img={reply.img} likes={reply.likes} replies={reply.replies} user={reply.user} text={reply.content} reply={reply.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                <Tweet key={idx+1} currentUser={user} date={reply.createdAt} id={reply._id} img={reply.img} likes={reply.likes} replies={reply.replies} user={reply.user} parent={reply.parent} text={reply.content} reply={reply.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
             )
         }))
     }
