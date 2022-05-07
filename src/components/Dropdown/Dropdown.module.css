@@ -9,11 +9,19 @@
     width: 100px;
     color: black;
     background-color: white;
+    border: 1px solid grey;
 }
 
 .dropdown {
     display: inline-block;
     position: relative;
+    right: 0%;
+}
+
+.dropdown > button {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
 }
 
 .dropdown:hover .dropdownContent{
@@ -21,6 +29,6 @@
 }
 
 .dropdownContent button:hover {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: rgb(251, 251, 251);
 }
