@@ -20,4 +20,4 @@ An app that is supposed to mimic the functionality of the social media app Twitt
 - Git/Github
 
 # ERD
-[!ERD](./public/TwitterERD.png)
+[ERD](https://github.com/mosesb1/twitter-react-app/tree/main/public/TwitterERD.png)
