@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import LogOut from '../../components/LogOut/LogOut';
+import UsernameDisplay from '../../components/UsernameDisplay/UsernameDisplay';
 import { useState, useEffect } from 'react';
 
 export default function Layout({user, setSearchText, searchText, setUser}) {
@@ -22,6 +23,7 @@ export default function Layout({user, setSearchText, searchText, setUser}) {
     return (
         <div className='layout'>
             <main>
+                {user && <UsernameDisplay user={user}/>}
                 <LogOut user={user} setUser={setUser}/>
                 <SearchBar searchText={searchText} setSearchText={setSearchText}/>
                 <NavBar user={user}/>
