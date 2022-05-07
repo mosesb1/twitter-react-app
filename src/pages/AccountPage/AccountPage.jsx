@@ -1,12 +1,15 @@
-import { deleteUser, changeUsername, changeEmail, changePassword } from "../../utilities/users-api";
+import { deleteUser, changeUsername, changeEmail, changePassword, updateUserImg } from "../../utilities/users-api";
 import { logOut } from "../../utilities/users-service";
 import {useState} from 'react';
+import axios from "axios";
 
 export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
+    const [files, setFiles] = useState([]);
     const [confirmPass, setConfirmPass] = useState({
         password: '',
         confirm: ''
     })
+    const [newAvatar, setNewAvatar] = useState({avatar: ''});
 
     const [newUsername, setNewUsername] = useState({username: ''});
     const [newEmail, setNewEmail] = useState({email: ''});
@@ -18,6 +21,22 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
 
     const [modalClass, setModalClass] = useState(["modal","hidden"]);
 
+    const imageUpload = (evt) => {
+        evt.preventDefault();
+        const formData = new FormData();
+        formData.append('file', files[0]);
+        formData.append('upload_preset', 'exoxfqfm');
+
+        axios.post("https://api.cloudinary.com/v1_1/dqt9fuamw/image/upload", formData)
+            .then((response) => {
+                setNewAvatar({avatar: response.data.secure_url});
+            })
+    }
+
+    const handleFiles = (evt) => {
+        setFiles(evt.target.files);
+    }
+
     const handleUsernameChange = (evt) => {
         setNewUsername({[evt.target.name]: evt.target.value});
     }
@@ -28,6 +47,16 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
 
     const showDelete = () => {
         setModalClass(["modal"]);
+    }
+
+    const handleImageSubmit = async (evt) => {
+        evt.preventDefault();
+        try {
+            await updateUserImg(user._id, newAvatar);
+            setUpdateUser(!updateUser);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const handleDeleteChange = (evt) => {
@@ -94,6 +123,11 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
     const disable = confirmPass.password !== confirmPass.confirm;
     return (
         <main>
+            <form onSubmit={handleImageSubmit}>
+                <input type='file' name="img" onChange={handleFiles} />
+                <button type='button' onClick={imageUpload}>{newAvatar.avatar ? "Image Uploaded ✅" : "Upload Image"}</button>
+                <input type="submit" value="Upload Profile Img" />
+            </form>
             <button onClick={showDelete}>Delete Account</button>
             <form onSubmit={handleUsername}>
                 <input type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>

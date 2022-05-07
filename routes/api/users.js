@@ -17,7 +17,7 @@ router.patch('/username/:userId', usersCtrl.changeUsername);
 
 router.patch('/email/:userId', usersCtrl.changeEmail);
 
-router.patch('/:userId/:tweetId', usersCtrl.like);
+router.patch('/image/:userId', usersCtrl.updateUserImg);
 
 router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike);
 
@@ -28,6 +28,8 @@ router.patch('/follow/remove/:userId/:followId', usersCtrl.removeFollow);
 router.patch('/bookmark/:userId/:tweetId', usersCtrl.bookmark);
 
 router.patch('/bookmark/remove/:userId/:tweetId', usersCtrl.removeBookmark);
+
+router.patch('/:userId/:tweetId', usersCtrl.like);
 
 // POST /api/users
 router.post('/', usersCtrl.create);

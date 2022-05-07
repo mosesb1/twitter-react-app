@@ -1,3 +1,8 @@
 export default function UsernameDisplay({user}){
-    return <h1>{user.username}</h1>
+    return (
+        <div>
+            <img src={user.avatar} alt='profile image' />
+            <h1>{user.username}</h1>
+        </div>
+    )
 }

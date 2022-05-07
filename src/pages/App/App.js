@@ -30,7 +30,8 @@ export default function App() {
             following: foundUser.following,
             username: foundUser.username,
             likes: foundUser.likes,
-            bookmarks: foundUser.bookmarks
+            bookmarks: foundUser.bookmarks,
+            avatar: foundUser.avatar
         });
     }
 

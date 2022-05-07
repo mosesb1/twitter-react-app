@@ -21,7 +21,8 @@ module.exports = {
   deleteAll,
   changeUsername,
   changeEmail,
-  changePassword
+  changePassword,
+  updateUserImg
 };
 
 function get(req,res) {
@@ -219,6 +220,16 @@ function changeUsername(req,res) {
 function changeEmail(req,res) {
   User.findByIdAndUpdate(req.params.userId, {email: req.body.email}, {returnDocument: 'after'}, (err, updatedUser) => {
     if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
+    }
+  })
+}
+
+function updateUserImg(req,res) {
+  User.findByIdAndUpdate(req.params.userId, {avatar: req.body.avatar}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){ 
       res.status(400).json(err);
     } else {
       res.status(200).json(updatedUser);

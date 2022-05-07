@@ -57,3 +57,7 @@ export function changeEmail(userId, body) {
 export function changePassword(userId, body) {
   return sendRequest(`${BASE_URL}/changepassword/${userId}`, "POST", body);
 }
+
+export function updateUserImg(userId, body) {
+  return sendRequest(`${BASE_URL}/image/${userId}`, "PATCH", body);
+}

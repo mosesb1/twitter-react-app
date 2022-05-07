@@ -5,7 +5,7 @@ import { findUser, userLike, userRemoveLike, follow, removeFollow, bookmark, rem
 import { tweetLike, tweetRemoveLike, bookmarkTweet, removeBookmarkTweet, getTweet } from '../../utilities/tweets-api';
 import Dropdown from '../Dropdown/Dropdown';
 
-export default function Tweet({currentUser, img, id, user, text, date, profileImg, replies, likes, reply, refresh, setRefresh, updateUser, setUpdateUser}) {
+export default function Tweet({currentUser, img, id, user, text, date, replies, likes, reply, refresh, setRefresh, updateUser, setUpdateUser}) {
 
     const [username, setUsername] = useState(null);
     const [tweeter, setTweeter] = useState(null);
@@ -67,7 +67,7 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
         return (
                 <div className="tweet-wrap">
                     <div className="tweet-header">
-                        {profileImg && <img src={profileImg} alt="" className="avator"/>}
+                        {tweeter.avatar && <img src={tweeter.avatar} alt="" className="avator"/>}
                         <div className="tweet-header-info">
                             <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}{user !== currentUser._id && <button onClick={handleFollow} className='follow-btn'>{tweeter.followers.includes(currentUser._id) ? "Unfollow" : "Follow"}</button>}<button onClick={handleBookmark} className="bookmark-btn">{tweet.bookmarks.includes(currentUser._id) ? "Remove Bookmark" : "Bookmark"}</button>
                             <Link to={`/${id}`}>
