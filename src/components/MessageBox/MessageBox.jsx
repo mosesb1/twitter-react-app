@@ -9,10 +9,9 @@ export default function MessageBox({threadId, user, refresh, setRefresh}){
     const findMessages = async () => {
         try {
             const foundMessages = await getMessages(threadId);
-            console.log(foundMessages)
             setMessages(foundMessages.map((message, idx) => {
                 return (
-                    <Message key={idx} text={message.message} classNames={["message",message.sender === user._id ? "right" : "left"]}/>
+                    <Message key={idx} user={user} sender={message.sender} receiver={message.receiver} text={message.message} classNames={["message",message.sender === user._id ? "right" : "left"]}/>
                 )
             }))       
         } catch (err) {
@@ -27,7 +26,7 @@ export default function MessageBox({threadId, user, refresh, setRefresh}){
 
     const loaded = () => {
         return (
-            <div>
+            <div className="message-right">
                 {messages}
                 <CreateMessage threadId={threadId} user={user} refresh={refresh} setRefresh={setRefresh}/>
             </div>

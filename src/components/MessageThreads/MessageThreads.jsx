@@ -24,7 +24,8 @@ export default function MessageThreads({user, refresh, setRefresh, setThreadId})
     
     const loaded = () => {
         return (
-            <div>
+            <div className="message-left">
+                <h3>Threads</h3>
                 {threads}
             </div>
         )

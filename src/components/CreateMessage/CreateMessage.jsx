@@ -35,7 +35,6 @@ export default function CreateMessage({threadId, user, refresh, setRefresh}){
             delete formData.error;
             formData.receiver = recipient;
             formData.thread = threadId;
-            console.log(formData)
             try {
                 const createdMessage = await createMessage(threadId, formData);
                 setRefresh(!refresh);
@@ -52,9 +51,11 @@ export default function CreateMessage({threadId, user, refresh, setRefresh}){
     },[threadId])
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type='text' placeholder='Write a message' value={messageBody.message} name='message' onChange={handleChange}/>
-            <input type='submit' value='Send' />
-        </form>
+        <div className='message-write'>
+            <form onSubmit={handleSubmit}>
+                <input type='text' placeholder='Write a message' value={messageBody.message} name='message' onChange={handleChange}/>
+                <input type='submit' value='Send' />
+            </form>
+        </div>
     )
 }

@@ -53,8 +53,53 @@ main {
   color: #1DA1F2;
 }
 
+.message-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.message-threads {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.message-names {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.message-names button {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid grey;
+  font-size: 1.5em;
+}
+
+.message-names button:hover {
+  background-color: rgb(246, 246, 246);
+}
+
+.message-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logout-btn:hover {
   background-color: rgb(251, 251, 251);
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
 }
 
 ul li {
