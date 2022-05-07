@@ -89,7 +89,7 @@ export default function EditPage({user,refresh, setRefresh, updateUser, setUpdat
                             <i className="fa-solid fa-paperclip-vertical"></i>
                             <input className='file-input' type='file' name="img" onChange={handleFiles} />
                         </label>
-                        <button type="button" className='upload-img' onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded" : "Upload Image"}</button>
+                        <button type="button" className='upload-img' onClick={imageUpload}>{body.img ? "Image Uploaded" : "Upload Image"}</button>
                         <input className="tweet-btn" type="submit" value="tweet" />
                     </div>
                 </form>
