@@ -31,7 +31,7 @@ export default function MessageThreads({user, refresh, setRefresh, setThreadId})
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return
     }
 
     return threads.length ? loaded() : loading()

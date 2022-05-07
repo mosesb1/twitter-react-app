@@ -45,7 +45,9 @@ const tweetSchema = new Schema({
             required: false
         }
     ]
-})
+}, {
+    timestamps: true
+});
 
 const Tweet = model('Tweet', tweetSchema);
 

@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const Tweet = require('../../models/tweet');
+const Message = require('../../models/message');
+const MessageThread = require('../../models/messageThread');
 
 module.exports = {
   create,
@@ -13,7 +16,9 @@ module.exports = {
   bookmark,
   removeBookmark,
   getUser,
-  getUserByName
+  getUserByName,
+  deleteUser,
+  deleteAll
 };
 
 function get(req,res) {
@@ -142,6 +147,44 @@ function removeBookmark(req,res){
       res.status(400).json(err);
     } else {
       res.status(200).json(updatedUser);
+    }
+  })
+}
+
+function deleteUser(req,res){
+  User.findByIdAndDelete(req.params.userId, (userErr, deletedUser) => {
+    if(userErr) {
+      res.status(400).json(userErr);
+    } else {
+      Tweet.deleteMany({user: req.params.userId}, (tweetErr, deletedTweets) => {
+        if(tweetErr){
+          res.status(400).json(tweetErr);
+        } else {
+          Message.deleteMany({$or: [{sender: req.params.userId}, {receiver: req.params.userId}]}, (messageErr, deletedMessages) => {
+            if(messageErr) {
+              res.status(400).json(messageErr); 
+            } else {
+              MessageThread.deleteMany({$or: [{userOne: req.params.userId}, {userTwo: req.params.userId}]}, (threadErr, deletedThreads) => {
+                if(threadErr){
+                  res.status(400).json(threadErr);
+                } else {
+                  res.status(200).json(deletedUser);
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+}
+
+function deleteAll(req,res){
+  User.deleteMany({},(err, deletedUsers) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(deletedUsers);
     }
   })
 }

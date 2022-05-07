@@ -69,11 +69,22 @@ const show = (req,res) => {
     })
 }
 
+const deleteAll = (req,res) => {
+    MessageThread.deleteMany({}, (err, deletedThreads) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(deletedThreads);
+        }
+    })
+}
+
 module.exports = {
     get,
     getThread,
     remove,
     create,
     addMessage,
-    show
+    show,
+    deleteAll
 }

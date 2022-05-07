@@ -35,7 +35,7 @@ export default function BookMarkPage({user, refresh, setRefresh, updateUser, set
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
     }
 
     useEffect(() => {

@@ -154,7 +154,7 @@ export default function Tweet({currentUser, img, id, user, text, date, profileIm
         )
     }
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return
     }
 
     return username && tweeter && tweet ? loaded() : loading();

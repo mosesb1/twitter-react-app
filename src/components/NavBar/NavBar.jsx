@@ -48,8 +48,10 @@ export default function NavBar({user}) {
                     </Link>
                 </li>
                 <li>
-                    <Icon icon="fa-solid fa-circle-ellipsis"/>
-                    More
+                    <Link to='/account'>
+                        <Icon icon="fa-solid fa-gear"/>
+                        Account
+                    </Link>
                 </li>
                 <TweetBtn/>
             </ul>

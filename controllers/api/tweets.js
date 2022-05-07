@@ -199,6 +199,16 @@ const show = (req,res) => {
     })
 }
 
+const deleteAll = (req,res) => {
+    Tweet.deleteMany({}, (err, foundTweet) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(foundTweet);
+        }
+    })
+}
+
 module.exports = {
     get,
     getReplies,
@@ -216,5 +226,6 @@ module.exports = {
     removeReply,
     bookmark,
     removeBookmark,
-    show
+    show,
+    deleteAll
 }

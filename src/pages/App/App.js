@@ -10,6 +10,7 @@ import ProfilePage from '../ProfilePage/ProfilePage';
 import BookmarkPage from '../BookmarkPage/BookmarkPage';
 import Lists from '../Lists/Lists';
 import Messages from '../Messages/Messages';
+import AccountPage from '../AccountPage/AccountPage';
 import { getUser } from '../../utilities/users-service';
 import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
@@ -51,6 +52,7 @@ export default function App() {
                         <Route path='/bookmarks' element={<BookmarkPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/lists' element={<Lists user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/messages' element={<Messages user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
+                        <Route path='/account' element={<AccountPage user={user} setUser={setUser}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

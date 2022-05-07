@@ -9,6 +9,11 @@ router.get('/:userId', usersCtrl.getUser);
 
 router.get('/name/:username', usersCtrl.getUserByName);
 
+router.delete('/', usersCtrl.deleteAll);
+
+router.delete('/:userId', usersCtrl.deleteUser);
+
+
 router.patch('/:userId/:tweetId', usersCtrl.like);
 
 router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike);

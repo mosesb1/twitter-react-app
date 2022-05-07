@@ -10,6 +10,7 @@ router.get('/user/all/:userId', tweetsCtrl.getUserTweetsAndReplies);
 router.get('/likes/:userId', tweetsCtrl.getLikes);
 router.get('/home/:userId', tweetsCtrl.getHome);
 router.get('/bookmark/:userId', tweetsCtrl.getBookmark);
+router.delete('/', tweetsCtrl.deleteAll);
 router.delete('/:id', tweetsCtrl.remove);
 router.put('/:id', tweetsCtrl.update);
 router.patch('/:tweetId/:userId', tweetsCtrl.like);

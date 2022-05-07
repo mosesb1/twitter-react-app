@@ -32,7 +32,7 @@ export default function MessageThread({setThreadId, user, id, userOne, userTwo, 
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return
     }
 
     return username ? loaded() : loading()

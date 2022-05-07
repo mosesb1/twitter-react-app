@@ -88,7 +88,7 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return <ProfileNavBar setDisplay={setDisplay}/>
     }
 
     return displayedTweets.length ? loaded() : loading()

@@ -37,8 +37,19 @@ const remove = (req,res) => {
     })
 }
 
+const deleteAll = (req,res) => {
+    Message.deleteMany({}, (err, deletedMessages) => {
+        if(err){
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(deletedMessages);
+        }
+    })
+}
+
 module.exports = {
     get,
     create,
-    remove
+    remove,
+    deleteAll
 }

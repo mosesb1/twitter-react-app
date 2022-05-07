@@ -35,7 +35,7 @@ export default function HomePage({user, refresh, setRefresh, updateUser, setUpda
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
     }
 
     useEffect(() => {

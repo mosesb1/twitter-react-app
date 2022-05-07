@@ -35,7 +35,7 @@ export default function ExplorePage({user, refresh, setRefresh, updateUser, setU
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
     }
 
     useEffect(() => {
