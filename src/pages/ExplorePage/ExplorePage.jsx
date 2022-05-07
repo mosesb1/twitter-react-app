@@ -28,6 +28,7 @@ export default function ExplorePage({user, refresh, setRefresh, updateUser, setU
     const loaded = () => {
         return (
             <main>
+                <h3 className='header'>Explore</h3>
                 <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
                 {tweets}
             </main>

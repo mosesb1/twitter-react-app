@@ -28,6 +28,7 @@ export default function BookMarkPage({user, refresh, setRefresh, updateUser, set
     const loaded = () => {
         return (
             <main>
+                <h3 className='header'>Bookmarks</h3>
                 <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
                 {tweets}
             </main>

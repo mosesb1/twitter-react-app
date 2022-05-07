@@ -17,7 +17,7 @@ main {
   justify-content: space-evenly;
   align-items: center;
 }
-nav {
+.top-nav {
   flex: 1;
 }
 
@@ -67,6 +67,10 @@ li {
 
 input[type="file"] {
   display: none;
+}
+
+.header {
+  text-align: center;
 }
 
 .custom-file-upload {

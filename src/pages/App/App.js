@@ -40,6 +40,7 @@ export default function App() {
     },[])
 
     useEffect(() => {
+        if(!user) return;
         refreshUser();
     },[updateUser])
     return (

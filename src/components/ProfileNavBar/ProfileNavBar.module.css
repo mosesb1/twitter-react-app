@@ -1,3 +1,25 @@
 .profileNav li {
     display: inline;
 }
+
+.profileNavBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.navBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+}
+
+.navBtn:hover {
+    background-color: rgb(246, 246, 246);
+}
+
+.active {
+    text-decoration: 5px #1DA1F2 underline;
+    text-decoration-skip-ink: none;
+}

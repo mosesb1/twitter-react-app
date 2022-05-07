@@ -81,6 +81,7 @@ export default function EditPage({user,refresh, setRefresh, updateUser, setUpdat
     const loaded = () => {
         return (
             <div>
+                <h3 className='header'>Edit your tweet</h3>
                 <form className="create-tweet" onSubmit={onSubmit}>
                     <textarea className="tweet-text" placeholder="What's happening?" name="content" onChange={handleChange} defaultValue={body.content}/>
                     <div className='create-btns'>

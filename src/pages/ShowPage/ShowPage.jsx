@@ -37,14 +37,14 @@ export default function ShowPage({user, refresh, setRefresh, updateUser, setUpda
     const loaded = () => {
         return (
             <div>
-                <NewTweet user={user} reply={true} id={id} setRefresh={setRefresh} refresh={refresh}/>
+                <NewTweet text="Reply to this tweet" user={user} reply={true} id={id} setRefresh={setRefresh} refresh={refresh}/>
                 {tweet}
                 {showReplies && replies}
             </div>
         )
     }
     const loading = () => {
-        return <NewTweet user={user} reply={true} id={id} setRefresh={setRefresh} refresh={refresh}/>
+        return <NewTweet text="Reply to this tweet" user={user} reply={true} id={id} setRefresh={setRefresh} refresh={refresh}/>
     }
 
     return tweet.length && replies.length ? loaded() : loading()

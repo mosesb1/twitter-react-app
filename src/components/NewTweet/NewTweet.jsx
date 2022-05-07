@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import { createTweet, createReply } from '../../utilities/tweets-api';
 import axios from 'axios';
 
-export default function NewTweet({user, reply, id, refresh, setRefresh}){
+export default function NewTweet({user, reply, id, refresh, setRefresh, text}){
     const [files, setFiles] = useState([]);
     let navigate = useNavigate();
 
@@ -64,7 +64,7 @@ export default function NewTweet({user, reply, id, refresh, setRefresh}){
     }
     return (
         <form className="create-tweet" onSubmit={onSubmit}>
-            <textarea className='tweet-text' placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
+            <textarea className='tweet-text' placeholder={text ? text : "What's happening?"} name="content" onChange={handleChange} value={body.content}/>
             <div className='create-btns'>
                 <label className="custom-file-upload">
                     <i className="fa-solid fa-paperclip-vertical"></i>

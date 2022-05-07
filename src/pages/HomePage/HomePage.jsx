@@ -28,6 +28,7 @@ export default function HomePage({user, refresh, setRefresh, updateUser, setUpda
     const loaded = () => {
         return (
             <main>
+                <h3 className='header'>Home</h3>
                 <NewTweet user={user} reply={false} refresh={refresh} setRefresh={setRefresh} />
                 {tweets}
             </main>

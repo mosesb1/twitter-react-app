@@ -1,17 +1,15 @@
 import styles from './ProfileNavBar.module.css';
 
-export default function ProfileNavBar({setDisplay}){
+export default function ProfileNavBar({setDisplay, display}){
 
     const handleClick = (evt) => {
         setDisplay(evt.target.textContent);
     }
     return (
-        <nav>
-            <ul className={styles.profileNav}>
-                <li><button onClick={handleClick}>Tweets</button></li>
-                <li><button onClick={handleClick}>{"Tweets & replies"}</button></li>
-                <li><button onClick={handleClick}>Likes</button></li>
-            </ul>
-        </nav>
+        <div className={styles.profileNavBar}>
+                <button className={display === "Tweets" ? `${styles.navBtn} ${styles.active}` : styles.navBtn} onClick={handleClick}>Tweets</button>
+                <button className={display === "Tweets & replies" ? `${styles.navBtn} ${styles.active}` : styles.navBtn} onClick={handleClick}>{"Tweets & replies"}</button>
+                <button className={display === "Likes" ? `${styles.navBtn} ${styles.active}` : styles.navBtn} onClick={handleClick}>Likes</button>
+        </div>
     )
 }

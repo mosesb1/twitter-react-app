@@ -81,7 +81,7 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
     const loaded = () => {
         return (
             <main>
-                <ProfileNavBar setDisplay={setDisplay}/>
+                <ProfileNavBar display={display} setDisplay={setDisplay}/>
                 {displayedTweets}
             </main>
         )
