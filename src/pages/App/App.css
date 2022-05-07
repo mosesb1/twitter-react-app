@@ -134,7 +134,21 @@ input[type="file"] {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
+
+.delete-account {
+  color: red;
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+}
+
+.delete-account:hover {
+  background-color: #E39393;
+  transition: 0.3s;
+}
+
 
 .tweet-text {
   width: 30vw;
@@ -196,8 +210,48 @@ input[type="file"] {
     cursor: pointer;
   }
 
+  .username-input, .email-input, .password-input {
+    margin-left: 20px;
+  }
+
+  .account-header {
+    align-self: flex-start;
+  }
+
   .delete {
-    background-color: red;
+    background-color: transparent;
+    color: red;
+    border: none;
+    font-size: 1.5em;
+  }
+
+  .delete:hover {
+    background-color: #E39393;
+    transition: 0.3s;
+  }
+
+  .red-border {
+    box-shadow: 0px 0px 5px red;
+  }
+
+  .green {
+    box-shadow: 0px 0px 5px green;
+  }
+
+  .tweet-content {
+    width: 100%;
+    word-wrap: break-word;
+  }
+
+  .tweet-header-info {
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    max-width: 80%;
+  }
+
+  .tweet-header {
+    white-space: pre-line;
   }
 
   label {
@@ -233,6 +287,13 @@ input[type="file"] {
 .modal-content > form > *{
     padding: 5px;
     margin-left: 10px;
+}
+
+.account-forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-page {

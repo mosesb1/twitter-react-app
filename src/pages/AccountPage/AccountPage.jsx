@@ -109,6 +109,7 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
         try {
             await changePassword(user._id, newPassword);
             setUpdateUser(!updateUser);
+            alert('Password Changed Successfully!')
         } catch (err) {
             console.error(err);
         }
@@ -126,32 +127,36 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
 
     const disable = confirmPass.password !== confirmPass.confirm;
     return (
-        <main>
+        <main className="account-forms">
             <form onSubmit={handleImageSubmit}>
             <div className='create-btns'>
+                <h3 className="account-header">Change Profile Picture</h3>
                 <label className="custom-file-upload">
                     <i className="fa-solid fa-paperclip-vertical"></i>
                     <input className='file-input' type='file' name="img" onChange={handleFiles} />
                 </label>
                 <button type="button" className='upload-img' onClick={newAvatar.avatar ? doNothing : imageUpload}>{newAvatar.avatar ? "Image Uploaded" : "Upload Image"}</button>
-                <input type="submit" value="Upload Profile Img" />
+                <input type="submit" value="Change Profile Img" />
             </div>
             </form>
             <form onSubmit={handleUsername}>
                 <div className="create-btns">
-                    <input type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>
+                    <h3 className="account-header">Change Username</h3>
+                    <input className="username-input" type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>
                     <input type='submit' value='Change Username' />
                 </div>
             </form>
             <form onSubmit={handleEmail}>
                 <div className="create-btns">
-                <input type='text' placeholder="new email" value={newEmail.email} name='email' onChange={handleEmailChange}/>
+                    <h3 className="account-header">Change Email</h3>
+                <input className="email-input" type='text' placeholder="new email" value={newEmail.email} name='email' onChange={handleEmailChange}/>
                 <input type='submit' value='Change Email' />
                 </div>
             </form>
             <form onSubmit={handlePassword}>
                 <div className="create-btns">
-                <input type='password' placeholder="old password" value={newPassword.oldPassword} name='oldPassword' onChange={handlePasswordChange}/>
+                    <h3 className="account-header">Change Password</h3>
+                <input className="password-input" type='password' placeholder="old password" value={newPassword.oldPassword} name='oldPassword' onChange={handlePasswordChange}/>
                 <input type='password' placeholder="new password" value={newPassword.password} name='password' onChange={handlePasswordChange}/>
                 <input type='password' placeholder="confirm new password" value={newPassword.confirm} name='confirm' onChange={handlePasswordChange}/>
                 <input type='submit' value='Change Password' disabled={disableChange}/>
@@ -174,7 +179,7 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
                 </div>
             </div>
             <div className="create-btns">
-            <button onClick={showDelete}>Delete Account</button>
+            <button className="delete-account" onClick={showDelete}>Delete Account</button>
             </div>
         </main>
     )

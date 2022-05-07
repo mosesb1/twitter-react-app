@@ -58,7 +58,7 @@ export default function SignUpForm({setUser}) {
                     </label>
                     <label>
                         Password
-                        <input type="password" name="password" value={form.password} onChange={handleChange} required />
+                        <input className={form.password.length < 8 ? "red-border" : "green"} type="password" name="password" value={form.password} onChange={handleChange} required />
                     </label>
                     <label>
                         Confirm
