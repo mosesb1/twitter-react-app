@@ -52,7 +52,7 @@ export default function App() {
                         <Route path='/bookmarks' element={<BookmarkPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/lists' element={<Lists user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/messages' element={<Messages user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
-                        <Route path='/account' element={<AccountPage user={user} setUser={setUser}/>}/>
+                        <Route path='/account' element={<AccountPage user={user} setUser={setUser} setUpdateUser={setUpdateUser} updateUser={updateUser}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

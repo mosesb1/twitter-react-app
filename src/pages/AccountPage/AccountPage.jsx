@@ -1,14 +1,20 @@
-import { deleteUser } from "../../utilities/users-api";
+import { deleteUser, changeUsername } from "../../utilities/users-api";
 import { logOut } from "../../utilities/users-service";
 import {useState} from 'react';
 
-export default function AccountPage({user, setUser}){
+export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
     const [confirmPass, setConfirmPass] = useState({
         password: '',
         confirm: ''
     })
 
+    const [newUsername, setNewUsername] = useState({username: ''});
+
     const [modalClass, setModalClass] = useState(["modal","hidden"]);
+
+    const handleUsernameChange = (evt) => {
+        setNewUsername({[evt.target.name]: evt.target.value});
+    }
 
     const showDelete = () => {
         setModalClass(["modal"]);
@@ -22,10 +28,21 @@ export default function AccountPage({user, setUser}){
     }
 
     const handleDelete = async (evt) => {
+        evt.preventDefault();
         try {
             await deleteUser(user._id);
             logOut();
             setUser(null);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const handleUsername = async (evt) => {
+        evt.preventDefault();
+        try {
+            await changeUsername(user._id, newUsername);
+            setUpdateUser(!updateUser);
         } catch (err) {
             console.error(err);
         }
@@ -39,6 +56,10 @@ export default function AccountPage({user, setUser}){
     return (
         <main>
             <button onClick={showDelete}>Delete Account</button>
+            <form onSubmit={handleUsername}>
+                <input type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>
+                <input type='submit' value='Change Username' />
+            </form>
             <div className={modalClass.join(" ")}>
                 <div className="modal-content">
                     <div className='modal-top'>

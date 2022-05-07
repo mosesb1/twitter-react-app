@@ -18,7 +18,8 @@ module.exports = {
   getUser,
   getUserByName,
   deleteUser,
-  deleteAll
+  deleteAll,
+  changeUsername
 };
 
 function get(req,res) {
@@ -185,6 +186,16 @@ function deleteAll(req,res){
       res.status(400).json(err);
     } else {
       res.status(200).json(deletedUsers);
+    }
+  })
+}
+
+function changeUsername(req,res) {
+  User.findByIdAndUpdate(req.params.userId, {username: req.body.username}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
     }
   })
 }

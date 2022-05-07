@@ -13,6 +13,7 @@ router.delete('/', usersCtrl.deleteAll);
 
 router.delete('/:userId', usersCtrl.deleteUser);
 
+router.patch('/username/:userId', usersCtrl.changeUsername);
 
 router.patch('/:userId/:tweetId', usersCtrl.like);
 

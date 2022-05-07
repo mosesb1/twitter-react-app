@@ -45,3 +45,7 @@ export function removeBookmark(userId,tweetId){
 export function deleteUser(userId){
   return sendRequest(`${BASE_URL}/${userId}`, "DELETE");
 }
+
+export function changeUsername(userId, body){
+  return sendRequest(`${BASE_URL}/username/${userId}`, "PATCH", body);
+}
