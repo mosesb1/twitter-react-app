@@ -44,18 +44,27 @@ export default function SignUpForm({setUser}) {
 
     const disable = form.password !== form.confirm;
     return (
-        <div>
+        <div className="container">
             <div className="form-container">
-                <form autoComplete="off" onSubmit={handleSubmit}>
-                    <label>Username</label>
-                    <input type="text" name="username" value={form.username} onChange={handleChange} required />
-                    <label>Email</label>
-                    <input type="email" name="email" value={form.email} onChange={handleChange} required />
-                    <label>Password</label>
-                    <input type="password" name="password" value={form.password} onChange={handleChange} required />
-                    <label>Confirm</label>
-                    <input type="password" name="confirm" value={form.confirm} onChange={handleChange} required />
-                    <button type="submit" disabled={disable}>SIGN UP</button>
+                <form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
+                    <h3>Sign Up</h3>
+                    <label>
+                        Username
+                        <input type="text" name="username" value={form.username} onChange={handleChange} required />
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" value={form.email} onChange={handleChange} required />
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" name="password" value={form.password} onChange={handleChange} required />
+                    </label>
+                    <label>
+                        Confirm
+                        <input type="password" name="confirm" value={form.confirm} onChange={handleChange} required />
+                    </label>
+                    <button className='login-submit' type="submit" disabled={disable}>SIGN UP</button>
                 </form>
             </div>
             <p className="error-message">&nbsp;{form.error}</p>
