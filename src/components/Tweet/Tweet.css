@@ -6,8 +6,11 @@ body {
     font-family: 'Roboto', sans-serif;
   
   }
-  img {
-    max-width:100%;
+  .tweet-img {
+    width: 450px;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
   
   
@@ -15,11 +18,10 @@ body {
     max-width:490px;
     background: #fff;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 0px;
     border-radius:3px;
     padding: 30px;
-    border-bottom: 1px solid #e6ecf0;
-    border-top: 1px solid #e6ecf0;
+    border: 1px solid grey;
   }
   
   .tweet-header {
@@ -42,6 +44,8 @@ body {
   }
   .tweet-img-wrap {
     padding-left: 60px;
+    width: 100%;
+    min-height: 100%;
   }
   
   .tweet-info-counts {

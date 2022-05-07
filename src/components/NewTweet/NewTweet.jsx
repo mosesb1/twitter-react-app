@@ -1,4 +1,5 @@
 import './NewTweet.module.css';
+import Icon from '../Icon/Icon';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { createTweet, createReply } from '../../utilities/tweets-api';

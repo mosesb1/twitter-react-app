@@ -69,16 +69,15 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                     <div className="tweet-header">
                         {tweeter.avatar && <img src={tweeter.avatar} alt="" className="avatar"/>}
                         <div className="tweet-header-info">
-                            <Link to={`/user/${user}`}>{username} <span>@{username}</span></Link>{date && <span>{date}</span>}{user !== currentUser._id && <button onClick={handleFollow} className='follow-btn'>{tweeter.followers.includes(currentUser._id) ? "Unfollow" : "Follow"}</button>}<button onClick={handleBookmark} className="bookmark-btn">{tweet.bookmarks.includes(currentUser._id) ? "Remove Bookmark" : "Bookmark"}</button>
-                            <Link to={`/${id}`}>
-                                <p>{text}</p>
+                            <Link to={`/user/${user}`} style={{ textDecoration: 'none', color: "black" }}>{username} <span>@{username}</span></Link>{date && <span>{date.slice(0,10)}</span>}<Dropdown currentUser={currentUser} user={user} tweeter={tweeter} handleFollow={handleFollow} handleBookmark={handleBookmark} tweet={tweet} id={id} reply={reply} setRefresh={setRefresh} refresh={refresh}/>
+                            <Link to={`/${id}`} style={{ textDecoration: 'none', color: "black" }}>
+                                <p className="tweet-content">{text}</p>
                             </Link>
                         </div>
                     </div>
                     <div className="tweet-img-wrap">
                         {img && <img src={img} alt="" className="tweet-img"/>}
                     </div>
-                    {currentUser._id === user && <Dropdown id={id} reply={reply} setRefresh={setRefresh} refresh={refresh}/>}
                     <div className="tweet-info-counts">
                         <div className="comments">
                             <svg className="feather feather-message-circle sc-dnqmqq jxshSx" 
@@ -113,7 +112,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                                     <polyline points="7 23 3 19 7 15"></polyline>
                                     <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
                             </svg>
-                            <div className="retweet-count">397</div>
+                            <div className="retweet-count">0</div>
                         </div>
                         <div className="likes">
                             <button className="like-btn" onClick={likes.includes(currentUser._id) ? removeLike : handleLike}>
@@ -133,7 +132,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                             </button>
                             <div className="likes-count">{likes.length}</div>
                         </div>
-                        <div className="message">
+                        {/* <div className="message">
                             <svg className="feather feather-send sc-dnqmqq jxshSx" 
                                 xmlns="http://www.w3.org/2000/svg" 
                                 width="20" 
@@ -148,7 +147,7 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
                                     <line x1="22" y1="2" x2="11" y2="13"></line>
                                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                             </svg>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
         )

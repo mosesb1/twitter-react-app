@@ -1,7 +1,26 @@
-.dropdownItem {
-    /* display: none; */
+.dropdownContent {
+    display: none;
+    position: absolute;
+    width: fit-content;
+    overflow: auto;
+}
+
+.dropdownContent > * {
+    width: 100px;
+    color: black;
+    background-color: white;
 }
 
 .dropdown {
+    display: inline-block;
+    position: relative;
+}
 
+.dropdown:hover .dropdownContent{
+    display: block;
+}
+
+.dropdownContent button:hover {
+    color: white;
+    background-color: black;
 }

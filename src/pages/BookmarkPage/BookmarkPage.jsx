@@ -11,7 +11,7 @@ export default function BookMarkPage({user, refresh, setRefresh, updateUser, set
             const filteredTweets = [];
             foundTweets.forEach((foundTweet, idx) => {
                 if(foundTweet.content.toLowerCase().includes(searchText.toLowerCase())){
-                    filteredTweets.push(<Tweet key={idx} currentUser={user} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>);
+                    filteredTweets.push(<Tweet key={idx} currentUser={user} date={foundTweet.createdAt} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>);
                     setTweets(filteredTweets);
                 }
             })
@@ -19,7 +19,7 @@ export default function BookMarkPage({user, refresh, setRefresh, updateUser, set
         } else {
             setTweets(foundTweets.map((foundTweet, idx) => {
                 return (
-                    <Tweet key={idx} currentUser={user} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                    <Tweet key={idx} currentUser={user} date={foundTweet.createdAt} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 )
             }))
         }
