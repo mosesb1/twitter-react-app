@@ -15,6 +15,8 @@ router.delete('/:userId', usersCtrl.deleteUser);
 
 router.patch('/username/:userId', usersCtrl.changeUsername);
 
+router.patch('/email/:userId', usersCtrl.changeEmail);
+
 router.patch('/:userId/:tweetId', usersCtrl.like);
 
 router.patch('/remove/:userId/:tweetId', usersCtrl.removeLike);
@@ -29,6 +31,8 @@ router.patch('/bookmark/remove/:userId/:tweetId', usersCtrl.removeBookmark);
 
 // POST /api/users
 router.post('/', usersCtrl.create);
+
+router.post('/changepassword/:userId', usersCtrl.changePassword);
 // POST /api/users/login
 router.post('/login', usersCtrl.login);
 

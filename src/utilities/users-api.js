@@ -49,3 +49,11 @@ export function deleteUser(userId){
 export function changeUsername(userId, body){
   return sendRequest(`${BASE_URL}/username/${userId}`, "PATCH", body);
 }
+
+export function changeEmail(userId, body) {
+  return sendRequest(`${BASE_URL}/email/${userId}`, "PATCH", body);
+}
+
+export function changePassword(userId, body) {
+  return sendRequest(`${BASE_URL}/changepassword/${userId}`, "POST", body);
+}

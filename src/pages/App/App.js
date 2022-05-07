@@ -36,6 +36,9 @@ export default function App() {
 
     useEffect(() => {
         setUser(getUser());
+    },[])
+
+    useEffect(() => {
         refreshUser();
     },[updateUser])
     return (

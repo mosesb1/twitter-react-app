@@ -19,7 +19,9 @@ module.exports = {
   getUserByName,
   deleteUser,
   deleteAll,
-  changeUsername
+  changeUsername,
+  changeEmail,
+  changePassword
 };
 
 function get(req,res) {
@@ -57,6 +59,20 @@ async function login(req, res) {
     res.status(200).json( createJWT(user) );
   } catch(e) {
     res.status(400).json({ msg: e.message, reason: 'Bad Credentials' });
+  }
+}
+
+async function changePassword(req,res) {
+  try {
+    const user = await User.findById(req.params.userId);
+    if(!user) throw new Error();
+
+    const match = await bcrypt.compare(req.body.oldPassword, user.password);
+    if(!match) throw new Error();
+    user.password = req.body.password;
+    user.save();
+  } catch (err) {
+    res.status(400).json({msg: err.message, reason: 'Bad Credentials'})
   }
 }
 
@@ -192,6 +208,16 @@ function deleteAll(req,res){
 
 function changeUsername(req,res) {
   User.findByIdAndUpdate(req.params.userId, {username: req.body.username}, {returnDocument: 'after'}, (err, updatedUser) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(updatedUser);
+    }
+  })
+}
+
+function changeEmail(req,res) {
+  User.findByIdAndUpdate(req.params.userId, {email: req.body.email}, {returnDocument: 'after'}, (err, updatedUser) => {
     if(err){
       res.status(400).json(err);
     } else {
