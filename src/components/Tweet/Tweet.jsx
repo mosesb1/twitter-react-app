@@ -14,11 +14,9 @@ export default function Tweet({currentUser, img, id, user, text, date, replies, 
     const getUserName = async () => {
         const foundUser = await findUser(user);
         const foundTweet = await getTweet(id);
-        console.log(foundTweet)
         setUsername(foundUser.username);
         setTweeter(foundUser);
         setTweet(foundTweet);
-        console.log(tweet);
     }
 
     useEffect(() => {

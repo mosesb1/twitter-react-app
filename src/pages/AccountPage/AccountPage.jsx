@@ -118,30 +118,44 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
         setModalClass(["modal","hidden"])
     }
 
+    const doNothing = () => {
+        return
+    }
+
     const disableChange = newPassword.password !== newPassword.confirm;
 
     const disable = confirmPass.password !== confirmPass.confirm;
     return (
         <main>
             <form onSubmit={handleImageSubmit}>
-                <input type='file' name="img" onChange={handleFiles} />
-                <button type='button' onClick={imageUpload}>{newAvatar.avatar ? "Image Uploaded ✅" : "Upload Image"}</button>
+            <div className='create-btns'>
+                <label className="custom-file-upload">
+                    <i className="fa-solid fa-paperclip-vertical"></i>
+                    <input className='file-input' type='file' name="img" onChange={handleFiles} />
+                </label>
+                <button type="button" className='upload-img' onClick={newAvatar.avatar ? doNothing : imageUpload}>{newAvatar.avatar ? "Image Uploaded" : "Upload Image"}</button>
                 <input type="submit" value="Upload Profile Img" />
+            </div>
             </form>
-            <button onClick={showDelete}>Delete Account</button>
             <form onSubmit={handleUsername}>
-                <input type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>
-                <input type='submit' value='Change Username' />
+                <div className="create-btns">
+                    <input type='text' placeholder="new username" value={newUsername.username} name='username' onChange={handleUsernameChange}/>
+                    <input type='submit' value='Change Username' />
+                </div>
             </form>
             <form onSubmit={handleEmail}>
+                <div className="create-btns">
                 <input type='text' placeholder="new email" value={newEmail.email} name='email' onChange={handleEmailChange}/>
                 <input type='submit' value='Change Email' />
+                </div>
             </form>
             <form onSubmit={handlePassword}>
+                <div className="create-btns">
                 <input type='password' placeholder="old password" value={newPassword.oldPassword} name='oldPassword' onChange={handlePasswordChange}/>
                 <input type='password' placeholder="new password" value={newPassword.password} name='password' onChange={handlePasswordChange}/>
                 <input type='password' placeholder="confirm new password" value={newPassword.confirm} name='confirm' onChange={handlePasswordChange}/>
                 <input type='submit' value='Change Password' disabled={disableChange}/>
+                </div>
             </form>
             <div className={modalClass.join(" ")}>
                 <div className="modal-content">
@@ -155,9 +169,12 @@ export default function AccountPage({user, setUser, updateUser, setUpdateUser}){
                         <input type='password' name='password' onChange={handleDeleteChange}/>
                         <label>Confirm Password</label>
                         <input type='password' name='confirm' onChange={handleDeleteChange} />
-                        <input type='submit' value='DELETE' disabled={disable}/>
+                        <input type='submit' value='DELETE' className='delete' disabled={disable}/>
                     </form>
                 </div>
+            </div>
+            <div className="create-btns">
+            <button onClick={showDelete}>Delete Account</button>
             </div>
         </main>
     )

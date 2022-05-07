@@ -185,6 +185,8 @@ input[type="file"] {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    background-color: transparent;
+    border: none;
   }
   
   .close:hover,
@@ -192,6 +194,10 @@ input[type="file"] {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .delete {
+    background-color: red;
   }
 
   label {
