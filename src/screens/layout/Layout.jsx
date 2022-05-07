@@ -2,10 +2,10 @@ import '../../pages/App/App.css';
 import { Outlet } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
-import NewTweet from '../../components/NewTweet/NewTweet';
+import LogOut from '../../components/LogOut/LogOut';
 import { useState, useEffect } from 'react';
 
-export default function Layout({user, setSearchText, searchText}) {
+export default function Layout({user, setSearchText, searchText, setUser}) {
 
     useEffect(() => {
         const scriptTag = document.createElement('script');
@@ -22,6 +22,7 @@ export default function Layout({user, setSearchText, searchText}) {
     return (
         <div className='layout'>
             <main>
+                <LogOut user={user} setUser={setUser}/>
                 <SearchBar searchText={searchText} setSearchText={setSearchText}/>
                 <NavBar user={user}/>
                 <Outlet searchText={searchText}/>

@@ -43,7 +43,7 @@ export default function App() {
             {
                 user ? 
                 <Routes>
-                    <Route path='/' element={<Layout user={user} searchText={searchText} setSearchText={setSearchText}/>}>
+                    <Route path='/' element={<Layout user={user} setUser={setUser} searchText={searchText} setSearchText={setSearchText}/>}>
                         <Route index element={<HomePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/explore' element={<ExplorePage user={user} setUser={setUser} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/:id' element={<ShowPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
