@@ -67,7 +67,7 @@ export default function NewTweet({user, reply, id, refresh, setRefresh}){
             <textarea placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
             <input type='file' name="img" onChange={handleFiles} />
             <button type="button" onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded ✅" : "Upload Image"}</button>
-            <input type="submit" value="tweet" />
+            <input className="tweet-btn" type="submit" value="tweet" />
         </form>
     )
 }

@@ -23,10 +23,14 @@ export default function Layout({user, setSearchText, searchText, setUser}) {
     return (
         <div className='layout'>
             <main>
-                {user && <UsernameDisplay user={user}/>}
-                <LogOut user={user} setUser={setUser}/>
-                <SearchBar searchText={searchText} setSearchText={setSearchText}/>
-                <NavBar user={user}/>
+                <div className='top-layout'>
+                    <NavBar user={user}/>
+                    <SearchBar searchText={searchText} setSearchText={setSearchText}/>
+                    <div className='profile-logout'>
+                        {user && <UsernameDisplay user={user}/>}
+                        <LogOut user={user} setUser={setUser}/>
+                    </div>
+                </div>
                 <Outlet searchText={searchText}/>
             </main>
         </div>

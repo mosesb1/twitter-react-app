@@ -10,7 +10,7 @@ export default function SearchBar({setSearchText, searchText}) {
 
     return (
         <form>
-            <input type='text' placeholder='search' value={searchText} onChange={handleChange}/>
+            <input className="searchbar" type='text' placeholder='search' value={searchText} onChange={handleChange}/>
         </form>
     )
 }

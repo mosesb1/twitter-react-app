@@ -53,7 +53,6 @@ export default function NavBar({user}) {
                         Account
                     </Link>
                 </li>
-                <TweetBtn/>
             </ul>
         </nav>
     )
