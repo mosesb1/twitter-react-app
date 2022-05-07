@@ -5,7 +5,7 @@ main {
 
 .tweet-btn {
     height: 20%;
-    width: 100%;
+    width: 200px;
     border-radius: 20px;
     background-color: #1DA1F2;
     color: white;
@@ -19,6 +19,12 @@ main {
 }
 nav {
   flex: 1;
+}
+
+.create-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-logout {
@@ -57,6 +63,33 @@ ul li {
 
 li {
   padding: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  background-color: white;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.upload-img {
+  width: 150px;
+}
+
+.create-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.tweet-text {
+  width: 30vw;
+  height: 5vh;
 }
 
 

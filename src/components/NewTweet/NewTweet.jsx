@@ -63,11 +63,16 @@ export default function NewTweet({user, reply, id, refresh, setRefresh}){
         return;
     }
     return (
-        <form onSubmit={onSubmit}>
-            <textarea placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
-            <input type='file' name="img" onChange={handleFiles} />
-            <button type="button" onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded ✅" : "Upload Image"}</button>
-            <input className="tweet-btn" type="submit" value="tweet" />
+        <form className="create-tweet" onSubmit={onSubmit}>
+            <textarea className='tweet-text' placeholder="What's happening?" name="content" onChange={handleChange} value={body.content}/>
+            <div className='create-btns'>
+                <label className="custom-file-upload">
+                    <i className="fa-solid fa-paperclip-vertical"></i>
+                    <input className='file-input' type='file' name="img" onChange={handleFiles} />
+                </label>
+                <button type="button" className='upload-img' onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded" : "Upload Image"}</button>
+                <input className="tweet-btn" type="submit" value="tweet" />
+            </div>
         </form>
     )
 }

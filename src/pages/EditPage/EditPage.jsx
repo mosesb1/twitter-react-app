@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTweet, editTweet } from '../../utilities/tweets-api';
+import Tweet from '../../components/Tweet/Tweet';
 import axios from 'axios';
 
-export default function EditPage(props){
+export default function EditPage({user,refresh, setRefresh, updateUser, setUpdateUser}){
     const [files, setFiles] = useState([]);
+    const [tweet, setTweet] = useState([]);
     const [body, setBody] = useState({
         content: '',
         user: '',
@@ -20,6 +22,7 @@ export default function EditPage(props){
     const findTweet = async () => {
         try {
             const foundTweet = await getTweet(id);
+            setTweet([<Tweet key={0} currentUser={user} date={foundTweet.createdAt} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>])
             setBody({
                 content: foundTweet.content,
                 user: foundTweet.user,
@@ -71,19 +74,31 @@ export default function EditPage(props){
         }
     }
 
+    const doNothing = () => {
+        return
+    }
+
     const loaded = () => {
         return (
-            <form onSubmit={onSubmit}>
-                <textarea placeholder="What's happening?" name="content" onChange={handleChange} defaultValue={body.content}/>
-                <input type='file' name="img" onChange={handleFiles} />
-                <button type="button" onClick={imageUpload}>Upload Image</button>
-                <input type="submit" value="tweet" />
-            </form>
+            <div>
+                <form className="create-tweet" onSubmit={onSubmit}>
+                    <textarea className="tweet-text" placeholder="What's happening?" name="content" onChange={handleChange} defaultValue={body.content}/>
+                    <div className='create-btns'>
+                        <label className="custom-file-upload">
+                            <i className="fa-solid fa-paperclip-vertical"></i>
+                            <input className='file-input' type='file' name="img" onChange={handleFiles} />
+                        </label>
+                        <button type="button" className='upload-img' onClick={body.img ? doNothing : imageUpload}>{body.img ? "Image Uploaded" : "Upload Image"}</button>
+                        <input className="tweet-btn" type="submit" value="tweet" />
+                    </div>
+                </form>
+                {tweet}
+            </div>
         )
     }
 
     const loading = () => {
-        return <h1>Loading ...</h1>
+        return
     }
-    return body.content ? loaded() : loading()
+    return tweet.length && body.content ? loaded() : loading()
 }
