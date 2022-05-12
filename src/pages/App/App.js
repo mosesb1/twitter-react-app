@@ -11,6 +11,7 @@ import BookmarkPage from '../BookmarkPage/BookmarkPage';
 import Lists from '../Lists/Lists';
 import Messages from '../Messages/Messages';
 import AccountPage from '../AccountPage/AccountPage';
+import SocketTest from '../SocketTest/SocketTest';
 import { getUser } from '../../utilities/users-service';
 import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
@@ -58,6 +59,7 @@ export default function App() {
                         <Route path='/lists' element={<Lists user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/messages' element={<Messages user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/account' element={<AccountPage user={user} setUser={setUser} setUpdateUser={setUpdateUser} updateUser={updateUser}/>}/>
+                        <Route path='/socket' element={<SocketTest user={user}/>}/>
                         <Route path='/*' element={<Navigate to='/' user={user} setUser={setUser}/>}/>
                     </Route>
                 </Routes> : 

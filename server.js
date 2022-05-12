@@ -2,6 +2,7 @@
 
 const express = require('express');
 const path = require('path');
+// const cors = require('cors');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
 
@@ -10,6 +11,7 @@ require('./config/database');
 
 const app = express();
 
+// app.use(cors());
 app.use(logger('dev'));
 // there's no need to mount express.urlencoded middleware
 // why is that?
@@ -44,3 +46,21 @@ const port = process.env.PORT || 3001;
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)
 });
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST"]
+  }
+});
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('User Disconnected');
+  });
+  socket.on('example_message', function(msg){
+    console.log('message: ' + msg);
+  });
+});
+io.listen(8000);
