@@ -1,5 +1,4 @@
 const {model, Schema} = require('mongoose');
-const messageSchema = require('./messageSchema');
 
 const messageThreadSchema = new Schema({
     userOne: {
@@ -12,7 +11,12 @@ const messageThreadSchema = new Schema({
         ref: 'User',
         required: true
     },
-    messages: [messageSchema]
+    messages: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Message'
+        }
+    ]
 })
 
 const MessageThread = model('MessageThread', messageThreadSchema);
