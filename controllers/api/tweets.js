@@ -2,13 +2,22 @@ const Tweet = require('../../models/tweet');
 const User = require('../../models/user');
 
 const get = (req,res) => {
-    Tweet.find({reply: "false"}, (err, foundTweets) => {
-        if(err){
-            res.status(400).json(err);
-        } else {
-            res.status(200).json(foundTweets);
-        }
-    })
+    Tweet.find({reply: "false"})
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'replies'
+            }
+        })
+        .populate('parent')
+        .populate('user')
+        .exec((err, foundTweets) => {
+            if(err){
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(foundTweets)
+            }
+        })
 }
 
 const getReplies = (req,res) => {
