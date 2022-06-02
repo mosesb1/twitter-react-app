@@ -26,13 +26,18 @@ module.exports = {
 };
 
 function get(req,res) {
-  User.find({}, (err, foundUsers) => {
-    if(err){
-      res.status(400).json(err)
-    } else {
-      res.status(200).json(foundUsers)
-    }
-  })
+  User.find({})
+    .populate('followers')
+    .populate('following')
+    .populate('likes')
+    .populate('bookmarks')
+    .exec((err, foundUser) => {
+      if(err){
+        res.status(400).json(err)
+      } else {
+        res.status(200).json(foundUser)
+      }
+    })
 }
 
 async function create(req, res) {
@@ -78,23 +83,33 @@ async function changePassword(req,res) {
 }
 
 function getUser(req,res) {
-  User.findById(req.params.userId, (err, foundUser) => {
-    if(err){
-      res.status(400).json(err);
-    } else {
-      res.status(200).json(foundUser);
-    }
-  })
+  User.findById(req.params.userId)
+    .populate('followers')
+    .populate('following')
+    .populate('likes')
+    .populate('bookmarks')
+    .exec((err, foundUser) => {
+      if(err){
+        res.status(400).json(err)
+      } else {
+        res.status(200).json(foundUser)
+      }
+    })
 }
 
 function getUserByName(req,res) {
-  User.find({username: req.params.username}, (err, foundUser) => {
-    if(err){
-      res.status(400).json(err);
-    } else {
-      res.status(200).json(foundUser);
-    }
-  })
+  User.find({username: req.params.username})
+    .populate('followers')
+    .populate('following')
+    .populate('likes')
+    .populate('bookmarks')
+    .exec((err, foundUser) => {
+      if(err){
+        res.status(400).json(err)
+      } else {
+        res.status(200).json(foundUser)
+      }
+    })
 }
 
 function like(req,res) {
