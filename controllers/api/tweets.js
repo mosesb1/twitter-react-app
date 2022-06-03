@@ -7,6 +7,9 @@ const get = (req,res) => {
             path: 'replies',
             populate: {
                 path: 'replies'
+            },
+            populate: {
+                path: 'user'
             }
         })
         .populate('parent')
@@ -199,13 +202,25 @@ const create = (req,res) => {
     })
 }
 const show = (req,res) => {
-    Tweet.findById(req.params.id, (err, foundTweet) => {
-        if(err){
-            res.status(400).json(err);
-        } else {
-            res.status(200).json(foundTweet);
-        }
-    })
+    Tweet.findById(req.params.id)
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'replies'
+            },
+            populate: {
+                path: 'user'
+            }
+        })
+        .populate('parent')
+        .populate('user')
+        .exec((err, foundTweets) => {
+            if(err){
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(foundTweets)
+            }
+        })
 }
 
 const deleteAll = (req,res) => {

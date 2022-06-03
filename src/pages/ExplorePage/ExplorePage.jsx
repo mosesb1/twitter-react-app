@@ -12,14 +12,14 @@ export default function ExplorePage({user, refresh, setRefresh, updateUser, setU
             const filteredTweets = [];
             foundTweets.forEach((foundTweet, idx) => {
                 if(foundTweet.content.toLowerCase().includes(searchText.toLowerCase())){
-                    filteredTweets.push(<Tweet key={idx} currentUser={user} date={foundTweet.createdAt} parent={foundTweet.parent} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>)
+                    filteredTweets.push(<Tweet key={idx} currentUser={user} tweet={foundTweet} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>)
                 }
             })
             setTweets(filteredTweets);
         } else {
             setTweets(foundTweets.map((foundTweet, idx) => {
                 return (
-                    <Tweet key={idx} currentUser={user} date={foundTweet.createdAt} parent={foundTweet.parent} id={foundTweet._id} img={foundTweet.img} likes={foundTweet.likes} replies={foundTweet.replies} user={foundTweet.user} text={foundTweet.content} reply={foundTweet.reply} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                    <Tweet key={idx} currentUser={user} tweet={foundTweet} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 )
             }))
         }
