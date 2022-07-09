@@ -99,13 +99,28 @@ const getBookmark = (req,res) => {
         if(err){
             res.status(400).json(err);
         } else {
-            Tweet.find({_id: {$in: foundUser.bookmarks}}, (err, foundTweets) => {
-                if(err){
-                    res.status(400).json(err);
-                } else {
-                    res.status(200).json(foundTweets);
-                }
-            })
+            Tweet.find({_id: {$in: foundUser.bookmarks}})
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'replies'
+                    }
+                })
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'user'
+                    }
+                })
+                .populate('parent')
+                .populate('user')
+                .exec((err, foundTweets) => {
+                    if(err){
+                        res.status(400).json(err)
+                    } else {
+                        res.status(200).json(foundTweets)
+                    }
+                })
         }
     })
 }
