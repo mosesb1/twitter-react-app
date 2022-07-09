@@ -27,39 +27,78 @@ const get = (req,res) => {
 }
 
 const getReplies = (req,res) => {
-    Tweet.findById(req.params.tweetId, (err,foundTweet) => {
-        if(err) {
-            res.status(400).json(err);
-        } else {
-            Tweet.find({_id: {$in: foundTweet.replies}}, (err,foundTweets) => {
-                if(err){
-                    res.status(400).json(err);
-                } else {
-                    res.status(200).json(foundTweets);
-                }
-            })
-        }
-    })
+    Tweet.findById(req.params.tweetId)
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'replies'
+            }
+        })
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'user'
+            }
+        })
+        .populate('parent')
+        .populate('user')
+        .exec((err, foundTweets) => {
+            if(err){
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(foundTweets)
+            }
+        })
 }
 
 const getUserTweets = (req,res) => {
-    Tweet.find({$and: [{user: req.params.userId}, {reply: "false"}]}, (err, foundTweets) => {
-        if(err) {
-            res.status(400).json(err);
-        } else {
-            res.status(200).json(foundTweets);
-        }
-    })
+    Tweet.find({$and: [{user: req.params.userId}, {reply: "false"}]})
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'replies'
+            }
+        })
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'user'
+            }
+        })
+        .populate('parent')
+        .populate('user')
+        .exec((err, foundTweets) => {
+            if(err){
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(foundTweets)
+            }
+        })
 }
 
 const getUserTweetsAndReplies = (req,res) => {
-    Tweet.find({user: req.params.userId}, (err, foundTweets) => {
-        if(err) {
-            res.status(400).json(err);
-        } else {
-            res.status(200).json(foundTweets);
-        }
-    })
+    Tweet.find({user: req.params.userId})
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'replies'
+            }
+        })
+        .populate({
+            path: 'replies',
+            populate: {
+                path: 'user'
+            }
+        })
+        .populate('parent')
+        .populate('user')
+        .exec((err, foundTweets) => {
+            if(err){
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(foundTweets)
+            }
+        })
 }
 
 const getLikes = (req,res) => {
@@ -67,13 +106,28 @@ const getLikes = (req,res) => {
         if(err){
             res.status(400).json(err);
         } else {
-            Tweet.find({_id: {$in: foundUser.likes}}, (err, foundTweets) => {
-                if(err){
-                    res.status(400).json(err);
-                } else {
-                    res.status(200).json(foundTweets);
-                }
-            })
+            Tweet.find({_id: {$in: foundUser.likes}})
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'replies'
+                    }
+                })
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'user'
+                    }
+                })
+                .populate('parent')
+                .populate('user')
+                .exec((err, foundTweets) => {
+                    if(err){
+                        res.status(400).json(err)
+                    } else {
+                        res.status(200).json(foundTweets)
+                    }
+                })
         }
     })
 }
@@ -83,13 +137,28 @@ const getHome = (req,res) => {
         if(err) {
             res.status(400).json(err);
         } else {
-            Tweet.find({$or: [{_id: {$in: foundUser.likes}}, {user: {$in: foundUser.following}}, {user: foundUser._id}]}, (err, foundTweets) => {
-                if(err) {
-                    res.status(400).json(err);
-                } else {
-                    res.status(200).json(foundTweets);
-                }
-            })
+            Tweet.find({$or: [{_id: {$in: foundUser.likes}}, {user: {$in: foundUser.following}}, {user: foundUser._id}]})
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'replies'
+                    }
+                })
+                .populate({
+                    path: 'replies',
+                    populate: {
+                        path: 'user'
+                    }
+                })
+                .populate('parent')
+                .populate('user')
+                .exec((err, foundTweets) => {
+                    if(err){
+                        res.status(400).json(err)
+                    } else {
+                        res.status(200).json(foundTweets)
+                    }
+                })
         }
     })
 }
