@@ -2,12 +2,15 @@ const Tweet = require('../../models/tweet');
 const User = require('../../models/user');
 
 const get = (req,res) => {
-    Tweet.find({reply: "false"})
+    Tweet.find()
         .populate({
             path: 'replies',
             populate: {
                 path: 'replies'
-            },
+            }
+        })
+        .populate({
+            path: 'replies',
             populate: {
                 path: 'user'
             }
@@ -207,7 +210,10 @@ const show = (req,res) => {
             path: 'replies',
             populate: {
                 path: 'replies'
-            },
+            }
+        })
+        .populate({
+            path: 'replies',
             populate: {
                 path: 'user'
             }

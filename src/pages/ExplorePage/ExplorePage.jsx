@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { getAll } from '../../utilities/tweets-api';
 import Tweet from '../../components/Tweet/Tweet.jsx';
 import { useEffect, useState } from 'react';
@@ -8,14 +7,13 @@ export default function ExplorePage({user, refresh, setRefresh, updateUser, setU
     const [tweets, setTweets] = useState([])
     const getTweets = async () => {
         const foundTweets = await getAll();
+        if(!foundTweets) return;
         if(searchText){
-            const filteredTweets = [];
-            foundTweets.forEach((foundTweet, idx) => {
+            setTweets(foundTweets.map((foundTweet, idx) => {
                 if(foundTweet.content.toLowerCase().includes(searchText.toLowerCase())){
-                    filteredTweets.push(<Tweet key={idx} currentUser={user} tweet={foundTweet} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>)
+                    return <Tweet key={idx} currentUser={user} tweet={foundTweet} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 }
-            })
-            setTweets(filteredTweets);
+            }));
         } else {
             setTweets(foundTweets.map((foundTweet, idx) => {
                 return (
