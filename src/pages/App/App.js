@@ -17,7 +17,7 @@ import { findUser } from '../../utilities/users-api';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
 export default function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [searchText, setSearchText] = useState('');
     const [updateUser, setUpdateUser] = useState(false);
     const [refresh, setRefresh] = useState(false);

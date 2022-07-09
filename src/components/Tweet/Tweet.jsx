@@ -6,9 +6,6 @@ import { tweetLike, tweetRemoveLike, bookmarkTweet, removeBookmarkTweet, getTwee
 import Dropdown from '../Dropdown/Dropdown';
 
 export default function Tweet({currentUser, tweet, refresh, setRefresh, updateUser, setUpdateUser}) {
-    if(tweet._id === '627677b755111bc810cb3d55'){
-        console.log('yes')
-    }
     const handleLike = async (evt) => {
         await tweetLike(tweet._id, currentUser._id);
         await userLike(currentUser._id, tweet._id);
@@ -145,5 +142,5 @@ export default function Tweet({currentUser, tweet, refresh, setRefresh, updateUs
         return
     }
 
-    return tweet.user.username && tweet.user && tweet ? loaded() : loading();
+    return tweet && currentUser ? loaded() : loading();
 }
