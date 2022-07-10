@@ -56,7 +56,6 @@ export default function App() {
                         <Route path='/edit/:id' element={<EditPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>}/>
                         <Route path='/user/:id' element={<ProfilePage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/bookmarks' element={<BookmarkPage user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
-                        <Route path='/lists' element={<Lists user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/messages' element={<Messages user={user} refresh={refresh} setRefresh={setRefresh} updateUser={updateUser} setUpdateUser={setUpdateUser} searchText={searchText}/>}/>
                         <Route path='/account' element={<AccountPage user={user} setUser={setUser} setUpdateUser={setUpdateUser} updateUser={updateUser}/>}/>
                         <Route path='/socket' element={<SocketTest user={user}/>}/>

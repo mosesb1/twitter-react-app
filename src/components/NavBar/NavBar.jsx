@@ -36,12 +36,6 @@ export default function NavBar({user}) {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/lists'>
-                        <Icon icon="fa-solid fa-memo"/>
-                        Lists
-                    </Link>
-                </li>
-                <li>
                     <Link to={`/user/${user._id}`}>
                         <Icon icon="fa-solid fa-user"/>
                         Profile
