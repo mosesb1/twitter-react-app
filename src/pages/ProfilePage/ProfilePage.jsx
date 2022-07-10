@@ -19,13 +19,11 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
     }
 
     const filterTweets = (foundTweets) => {
-        const filteredTweets = [];
-        foundTweets.map((tweet, idx) => {
-            if(tweet.content.toLowerCase().includes(searchText.toLowerCase())){
-                filteredTweets.push(<Tweet key={idx} currentUser={user} date={tweet.createdAt} parent={tweet.parent} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>)
+        setDisplayedTweets(foundTweets.map((foundTweet, idx) => {
+            if(foundTweet.content.toLowerCase().includes(searchText.toLowerCase())){
+                return <Tweet key={idx} currentUser={user} tweet={foundTweet} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
             }
-        })
-        setDisplayedTweets(filteredTweets)
+        }))
     }
 
     const findTweets = async () => {
@@ -33,9 +31,9 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
         if(searchText){
             filterTweets(foundTweets);
         } else {
-            setDisplayedTweets(foundTweets.map((tweet, idx) => {
+            setDisplayedTweets(foundTweets.map((foundTweet, idx) => {
                 return (
-                    <Tweet key={idx} currentUser={user} date={tweet.createdAt} parent={tweet.parent} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                    <Tweet key={idx} currentUser={user} tweet={foundTweet} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 )
             }))
         }
@@ -46,9 +44,9 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
         if(searchText){
             filterTweets(foundTweets);
         } else {
-            setDisplayedTweets(foundTweets.map((tweet, idx) => {
+            setDisplayedTweets(foundTweets.map((foundTweet, idx) => {
                 return (
-                    <Tweet key={idx} currentUser={user} date={tweet.createdAt} parent={tweet.parent} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                    <Tweet key={idx} currentUser={user} tweet={foundTweet} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 )
             }))
         }
@@ -59,9 +57,9 @@ export default function ProfilePage({user, refresh, setRefresh, updateUser, setU
         if(searchText){
             filterTweets(foundTweets);
         } else {
-            setDisplayedTweets(foundTweets.map((tweet, idx) => {
+            setDisplayedTweets(foundTweets.map((foundTweet, idx) => {
                 return (
-                    <Tweet key={idx} currentUser={user} date={tweet.createdAt} parent={tweet.parent} id={tweet._id} img={tweet.img} likes={tweet.likes} replies={tweet.replies} user={tweet.user} text={tweet.content} reply={tweet.reply} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
+                    <Tweet key={idx} currentUser={user} tweet={foundTweet} setRefresh={setRefresh} refresh={refresh} updateUser={updateUser} setUpdateUser={setUpdateUser}/>
                 )
             }))
         }
